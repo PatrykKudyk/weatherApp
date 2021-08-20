@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.weatherapp.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home_to_add_city"
+            app:destination="@id/add_city" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_chosen"
+        android:name="com.example.weatherapp.ui.chosen.ChosenFragment"
+        android:label="@string/menu_chosen"
+        tools:layout="@layout/fragment_chosen" />
+
+    <fragment
+        android:id="@+id/add_city"
+        android:name="com.example.weatherapp.ui.addCity.AddCityFragment"
+        android:label="@string/addCity"
+        tools:layout="@layout/fragment_add_city">
+        <action
+            android:id="@+id/action_add_city_to_nav_home"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/nav_home" />
+    </fragment>
+
+</navigation>
