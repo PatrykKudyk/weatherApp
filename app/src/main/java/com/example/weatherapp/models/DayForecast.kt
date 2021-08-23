@@ -9,7 +9,7 @@ data class DayForecast(
     val avgtemp_f: Double,
     val maxwind_mph: Double,
     val maxwind_kph: Double,
-    val avghumidity: Double,
+    val avghumidity: Int,
     val daily_chance_of_rain: Int,
     val daily_chance_of_snow: Int,
     val condition: Condition

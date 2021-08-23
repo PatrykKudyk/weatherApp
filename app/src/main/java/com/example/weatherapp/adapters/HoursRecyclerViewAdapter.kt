@@ -8,11 +8,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.R
+import com.example.weatherapp.helpers.WeatherDrawablesHelper
+import com.example.weatherapp.models.HourForecast
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 class HoursRecyclerViewAdapter(private val context: Context): RecyclerView.Adapter<HoursRecyclerViewAdapter.HoursViewHolder>() {
 
-//    private var items: List<HourWeather> = mutableListOf()
+    private var items = ArrayList<HourForecast>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HoursViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.listitem_hour, parent, false)
@@ -20,19 +24,20 @@ class HoursRecyclerViewAdapter(private val context: Context): RecyclerView.Adapt
     }
 
     override fun onBindViewHolder(holder: HoursViewHolder, position: Int) {
-//        val weather = items[position]
+        val weather = items[position]
         holder.initViews()
-//        holder.setData(weather)
+        holder.setData(weather)
     }
 
     override fun getItemCount(): Int {
-//        return items.size
-        return 0
+        return items.size
     }
 
-//    fun setItems(items :List<HourWeather>){
-//        this.items = items
-//    }
+    fun setItems(hourForecast: ArrayList<HourForecast>) {
+        items = hourForecast
+        notifyDataSetChanged()
+    }
+
 
     inner class HoursViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
@@ -46,10 +51,19 @@ class HoursRecyclerViewAdapter(private val context: Context): RecyclerView.Adapt
             hourHour = itemView.findViewById(R.id.hourHour)
         }
 
-//        fun setData(hour: HourWeather){
-//            hourImage.setImageDrawable(hour.image)
-//            hourTemperature.text = "${hour.temperature} °C"
-//            hourHour.text = hour.hour.toString()
-//        }
+        fun setData(hour: HourForecast){
+            hourImage.setImageDrawable(
+                WeatherDrawablesHelper().getCorrectDrawable(
+                    hour.is_day,
+                    hour.condition.code,
+                    context
+                )
+            )
+            hourTemperature.text = "${hour.temp_c.toInt()} °C"
+
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+            val date = LocalDateTime.parse(hour.time, formatter)
+            hourHour.text = date.hour.toString()
+        }
     }
 }

@@ -18,8 +18,6 @@ class HomeFragment : Fragment() {
 
     private lateinit var viewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
-    private lateinit var hourWeatherAdapter: HoursRecyclerViewAdapter
-    private lateinit var dayWeatherAdapter: DaysRecyclerViewAdapter
     private var cityName = ""
 
     private val binding get() = _binding!!
@@ -58,7 +56,7 @@ class HomeFragment : Fragment() {
             binding.showWeatherGroup.visibility = View.GONE
         } else {
             binding.textViewCity.text = cityName
-            viewModel.fetchForecastData(cityName)
+            viewModel.fetchForecastData(cityName, requireActivity(), binding)
             binding.showWeatherGroup.visibility = View.VISIBLE
             binding.addCityGroup.visibility = View.GONE
         }
@@ -75,22 +73,5 @@ class HomeFragment : Fragment() {
         addButton.setOnClickListener {
             findNavController().navigate(R.id.action_nav_home_to_add_city)
         }
-    }
-
-    private fun initViews() {
-        initRecyclerViews()
-    }
-
-    private fun initRecyclerViews() {
-        hourWeatherAdapter = HoursRecyclerViewAdapter(requireContext())
-        binding.recyclerHours.adapter = hourWeatherAdapter
-        binding.recyclerHours.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-//        hourWeatherAdapter.setItems(viewModel.allHourWeather)
-
-        dayWeatherAdapter = DaysRecyclerViewAdapter(requireContext())
-        binding.recyclerDays.adapter = dayWeatherAdapter
-        binding.recyclerDays.layoutManager = LinearLayoutManager(requireContext())
-//        dayWeatherAdapter.setItems(viewModel.allDayWeather)
     }
 }
