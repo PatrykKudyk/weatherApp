@@ -14,7 +14,7 @@ class WeatherDrawablesHelper {
         }
     }
 
-    private fun getNightImage(code: Int, context: Context): Drawable? {
+    private fun getDayImage(code: Int, context: Context): Drawable? {
         return when (code) {
             1000 -> return context.getDrawable(R.drawable.day_113)
             1003 -> return context.getDrawable(R.drawable.day_116)
@@ -68,7 +68,7 @@ class WeatherDrawablesHelper {
         }
     }
 
-    private fun getDayImage(code: Int, context: Context): Drawable? {
+    private fun getNightImage(code: Int, context: Context): Drawable? {
         return when (code) {
             1000 -> return context.getDrawable(R.drawable.night_113)
             1003 -> return context.getDrawable(R.drawable.night_116)

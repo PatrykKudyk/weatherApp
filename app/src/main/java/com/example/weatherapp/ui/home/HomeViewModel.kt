@@ -54,18 +54,31 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         })
     }
 
-    private fun fillFields(activity: Activity, binding: FragmentHomeBinding, forecast: CityForecast){
+    private fun fillFields(
+        activity: Activity,
+        binding: FragmentHomeBinding,
+        forecast: CityForecast
+    ) {
         activity.runOnUiThread {
-            binding.textViewTemperature.text = "${forecast.current.temp_c.toInt()} °C"
-            binding.textViewDescription.text = forecast.current.condition.text
-
             hoursRecyclerViewAdapter = HoursRecyclerViewAdapter(activity)
-            binding.recyclerHours.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            binding.recyclerHours.layoutManager =
+                LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
             binding.recyclerHours.adapter = hoursRecyclerViewAdapter
             hoursRecyclerViewAdapter.setItems(forecast.forecast.forecastday[0].hour)
 
             val currentHourPosition = calculateCurrentHourPosition(forecast)
-            (binding.recyclerHours.layoutManager as LinearLayoutManager).scrollToPosition(currentHourPosition)
+            (binding.recyclerHours.layoutManager as LinearLayoutManager).scrollToPosition(
+                currentHourPosition
+            )
+
+            binding.textViewTemperature.text =
+                "${forecast.forecast.forecastday[0].hour[currentHourPosition].temp_c.toInt()} °C"
+            binding.textViewDescription.text = forecast.current.condition.text
+            binding.textViewHighTemperature.text =
+                "H: " + forecast.forecast.forecastday[0].day.maxtemp_c.toInt().toString()
+            binding.textViewLowTemperature.text =
+                "L: " + forecast.forecast.forecastday[0].day.mintemp_c.toInt().toString()
+
         }
     }
 

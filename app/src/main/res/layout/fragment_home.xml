@@ -12,6 +12,13 @@
         android:layout_height="match_parent"
         android:background="@drawable/background_sunny">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/middleScreenVerticalGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
         <TextView
             android:id="@+id/textViewCity"
             style="@style/textWhiteRegular"
@@ -35,6 +42,33 @@
             app:layout_constraintTop_toBottomOf="@id/textViewCity" />
 
         <TextView
+            android:id="@+id/textViewHighTemperature"
+            style="@style/textWhiteRegular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="end"
+            android:textSize="@dimen/text_size_normal"
+            app:layout_constraintEnd_toStartOf="@id/middleScreenVerticalGuideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewTemperature" />
+
+        <TextView
+            android:id="@+id/textViewLowTemperature"
+            style="@style/textWhiteRegular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:gravity="start"
+            android:textSize="@dimen/text_size_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/middleScreenVerticalGuideline"
+            app:layout_constraintTop_toBottomOf="@id/textViewTemperature" />
+
+
+        <TextView
             android:id="@+id/textViewDescription"
             style="@style/textWhiteRegular"
             android:layout_width="match_parent"
@@ -44,7 +78,7 @@
             android:textSize="@dimen/text_size_normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewTemperature" />
+            app:layout_constraintTop_toBottomOf="@id/textViewHighTemperature" />
 
         <View
             android:id="@+id/recyclerTopSeparator"
@@ -76,6 +110,7 @@
             android:layout_margin="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/recyclerBottomSeparator" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
