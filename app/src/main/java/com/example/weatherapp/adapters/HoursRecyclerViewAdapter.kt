@@ -8,13 +8,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.R
+import com.example.weatherapp.helpers.CalendarHelper
 import com.example.weatherapp.helpers.WeatherDrawablesHelper
 import com.example.weatherapp.models.HourForecast
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 
-class HoursRecyclerViewAdapter(private val context: Context): RecyclerView.Adapter<HoursRecyclerViewAdapter.HoursViewHolder>() {
+class HoursRecyclerViewAdapter(private val context: Context) :
+    RecyclerView.Adapter<HoursRecyclerViewAdapter.HoursViewHolder>() {
 
     private var items = ArrayList<HourForecast>()
 
@@ -39,19 +41,19 @@ class HoursRecyclerViewAdapter(private val context: Context): RecyclerView.Adapt
     }
 
 
-    inner class HoursViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    inner class HoursViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private lateinit var hourImage: ImageView
         private lateinit var hourTemperature: TextView
         private lateinit var hourHour: TextView
 
-        fun initViews(){
+        fun initViews() {
             hourImage = itemView.findViewById(R.id.hourImage)
             hourTemperature = itemView.findViewById(R.id.hourTemperature)
             hourHour = itemView.findViewById(R.id.hourHour)
         }
 
-        fun setData(hour: HourForecast){
+        fun setData(hour: HourForecast) {
             hourImage.setImageDrawable(
                 WeatherDrawablesHelper().getCorrectDrawable(
                     hour.is_day,
@@ -61,9 +63,9 @@ class HoursRecyclerViewAdapter(private val context: Context): RecyclerView.Adapt
             )
             hourTemperature.text = "${hour.temp_c.toInt()} °C"
 
-            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
-            val date = LocalDateTime.parse(hour.time, formatter)
-            hourHour.text = date.hour.toString()
+
+            val convertedDate = CalendarHelper().getDateTimeFromString(hour.time)
+            hourHour.text = convertedDate.hour.toString()
         }
     }
 }

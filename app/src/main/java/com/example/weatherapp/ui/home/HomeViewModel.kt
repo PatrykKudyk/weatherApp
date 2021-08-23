@@ -6,11 +6,13 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.weatherapp.adapters.DaysRecyclerViewAdapter
 import com.example.weatherapp.adapters.HoursRecyclerViewAdapter
 import com.example.weatherapp.databinding.FragmentHomeBinding
 import com.example.weatherapp.db.MyDatabase
 import com.example.weatherapp.db.city.City
 import com.example.weatherapp.db.city.CityDao
+import com.example.weatherapp.helpers.CalendarHelper
 import com.example.weatherapp.models.CityForecast
 import com.example.weatherapp.services.ForecastService
 import com.example.weatherapp.services.ServiceBuilder
@@ -24,6 +26,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     private val cityDao: CityDao
     private lateinit var hoursRecyclerViewAdapter: HoursRecyclerViewAdapter
+    private lateinit var daysRecyclerViewAdapter: DaysRecyclerViewAdapter
     val primaryCity: LiveData<City?>
 
     init {
@@ -46,9 +49,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             override fun onFailure(call: Call<CityForecast>, t: Throwable) {
-                val isExecuted = call.isExecuted
-                val isCancelled = call.isCanceled
-                val cos = 0
+
             }
 
         })
@@ -71,6 +72,11 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                 currentHourPosition
             )
 
+            daysRecyclerViewAdapter = DaysRecyclerViewAdapter(activity)
+            binding.recyclerDays.layoutManager = LinearLayoutManager(activity)
+            binding.recyclerDays.adapter = daysRecyclerViewAdapter
+            daysRecyclerViewAdapter.setItems(forecast.forecast.forecastday)
+
             binding.textViewTemperature.text =
                 "${forecast.forecast.forecastday[0].hour[currentHourPosition].temp_c.toInt()} °C"
             binding.textViewDescription.text = forecast.current.condition.text
@@ -83,9 +89,8 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun calculateCurrentHourPosition(forecast: CityForecast): Int {
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
-        val date = LocalDateTime.parse(forecast.location.localtime, formatter)
-        return date.hour
+        val convertedDate = CalendarHelper().getDateTimeFromString(forecast.location.localtime)
+        return convertedDate.hour
     }
 
 }

@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="0.6"
+            android:layout_weight="0.5"
             android:gravity="start|center_vertical"
             android:textSize="@dimen/text_size_medium" />
 
@@ -25,6 +25,7 @@
             android:id="@+id/dayImage"
             android:layout_width="@dimen/image_medium_size"
             android:layout_height="@dimen/image_medium_size"
+            android:layout_gravity="center"
             android:layout_weight="0.2" />
 
         <TextView
@@ -33,7 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="0.2"
+            android:layout_weight="0.3"
             android:gravity="end|center_vertical"
             android:textSize="@dimen/text_size_medium" />
 
