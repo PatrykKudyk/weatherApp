@@ -12,6 +12,8 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_nav_home_to_add_city"
+            app:enterAnim="@anim/enter_from_bottom"
+            app:popExitAnim="@anim/exit_to_bottom"
             app:destination="@id/add_city" />
     </fragment>
 
@@ -28,8 +30,6 @@
         tools:layout="@layout/fragment_add_city">
         <action
             android:id="@+id/action_add_city_to_nav_home"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
             app:popUpTo="@id/nav_home" />
     </fragment>
 
