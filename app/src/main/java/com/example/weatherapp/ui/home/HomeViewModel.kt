@@ -14,6 +14,7 @@ import com.example.weatherapp.db.city.City
 import com.example.weatherapp.db.city.CityDao
 import com.example.weatherapp.helpers.CalendarHelper
 import com.example.weatherapp.models.CityForecast
+import com.example.weatherapp.models.Mocks
 import com.example.weatherapp.services.ForecastService
 import com.example.weatherapp.services.ServiceBuilder
 import retrofit2.Call
@@ -61,6 +62,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         forecast: CityForecast
     ) {
         activity.runOnUiThread {
+            if (forecast.forecast.forecastday.size == 0)
+                forecast.forecast.forecastday = Mocks().getDaysWeatherList()
+
             hoursRecyclerViewAdapter = HoursRecyclerViewAdapter(activity)
             binding.recyclerHours.layoutManager =
                 LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)

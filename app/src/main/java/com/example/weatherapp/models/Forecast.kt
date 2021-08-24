@@ -1,5 +1,5 @@
 package com.example.weatherapp.models
 
 data class Forecast(
-    val forecastday: ArrayList<ForecastDay>
+    var forecastday: ArrayList<ForecastDay>
 )
