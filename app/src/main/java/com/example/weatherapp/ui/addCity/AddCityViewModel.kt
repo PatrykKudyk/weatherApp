@@ -2,24 +2,31 @@ package com.example.weatherapp.ui.addCity
 
 import android.app.Activity
 import android.app.Application
-import android.os.AsyncTask
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import com.example.weatherapp.R
 import com.example.weatherapp.db.MyDatabase
 import com.example.weatherapp.db.city.City
 import com.example.weatherapp.db.city.CityDao
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
+import com.example.weatherapp.models.CityForecast
+import com.example.weatherapp.services.ForecastService
+import com.example.weatherapp.services.ServiceBuilder
+import kotlinx.coroutines.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class AddCityViewModel(application: Application) : AndroidViewModel(application) {
 
     private val cityDao: CityDao
-    val primaryCity: LiveData<City?>
+    private val primaryCity: LiveData<City?>
+    var chosenCity = ""
+    var isCityCorrect: Boolean? = false
+    var isRequestDone: MutableLiveData<Boolean> = MutableLiveData()
 
     init {
         val cityDb = MyDatabase.getDatabase(application)
@@ -46,22 +53,44 @@ class AddCityViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-    fun canPressButton(cityName: String): Int {
-        return if (cityName.isNotEmpty()){
-            if (doesCityExist()){
-                CITY_EXISTS
-            } else {
-                CITY_DOES_NOT_EXIST
-            }
-        } else {
-            NO_CITY_GIVEN
-        }
+    fun canPressButton(cityName: String): Boolean {
+        return cityName.isNotEmpty()
     }
 
-    private fun doesCityExist(): Boolean {
+    private fun fetchCity(name: String) {
+        val taskService = ServiceBuilder().buildService(ForecastService::class.java)
+        val parameters = HashMap<String, String>()
+        parameters["q"] = name
+        parameters["days"] = "3"
+        parameters["lang"] = "pl"
+        val call = taskService.getForecast(parameters)
+        call.enqueue(object : Callback<CityForecast> {
+            override fun onResponse(
+                call: Call<CityForecast>,
+                response: Response<CityForecast>
+            ) {
+                when (response.code()) {
+                    200 -> {
+                        chosenCity = response.body()!!.location.name
+                        isCityCorrect = true
+                    }
 
-        // TODO zrobić strzał do api czy miasto istnieje
-        return true
+                    400 -> {
+                        isCityCorrect = false
+                    }
+                    else -> {
+                        isCityCorrect = false
+                    }
+                }
+                isRequestDone.value = true
+            }
+
+            override fun onFailure(call: Call<CityForecast>, t: Throwable) {
+                isCityCorrect = false
+                isRequestDone.value = true
+            }
+
+        })
     }
 
     fun hideKeyboard(activity: Activity) {
@@ -75,17 +104,15 @@ class AddCityViewModel(application: Application) : AndroidViewModel(application)
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    fun fetchPrimaryCity(): City? = runBlocking{
+    fun fetchPrimaryCity(): City? = runBlocking {
         val city = async(Dispatchers.Default) {
             cityDao.getOnePrimaryCity()
         }
         return@runBlocking city.await()
     }
 
-    companion object {
-        const val NO_CITY_GIVEN = 1
-        const val CITY_EXISTS = 2
-        const val CITY_DOES_NOT_EXIST = 3
+    fun performAddCityButtonClick(givenCityName: String) {
+        fetchCity(givenCityName)
     }
 
 }

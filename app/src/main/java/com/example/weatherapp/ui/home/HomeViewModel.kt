@@ -2,10 +2,12 @@ package com.example.weatherapp.ui.home
 
 import android.app.Activity
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.weatherapp.R
 import com.example.weatherapp.adapters.DaysRecyclerViewAdapter
 import com.example.weatherapp.adapters.HoursRecyclerViewAdapter
 import com.example.weatherapp.databinding.FragmentHomeBinding
@@ -46,11 +48,32 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         val call = taskService.getForecast(parameters)
         call.enqueue(object : Callback<CityForecast> {
             override fun onResponse(call: Call<CityForecast>, response: Response<CityForecast>) {
-                fillFields(activity, binding, response.body()!!)
+                when (response.code()) {
+                    200 -> fillFields(activity, binding, response.body()!!)
+                    else -> {
+                        activity.runOnUiThread {
+                            Toast.makeText(
+                                activity.applicationContext,
+                                activity.applicationContext.getText(
+                                    R.string.toast_response_not_known
+                                ),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
             }
 
             override fun onFailure(call: Call<CityForecast>, t: Throwable) {
-
+                activity.runOnUiThread {
+                    Toast.makeText(
+                        activity.applicationContext,
+                        activity.applicationContext.getText(
+                            R.string.toast_something_went_wrong_try_again
+                        ),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
 
         })

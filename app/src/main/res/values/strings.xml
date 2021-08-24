@@ -14,4 +14,8 @@
     <string name="cityName">City name</string>
     <string name="noCityGiven">No city given</string>
     <string name="cityDoesNotExist">Given city does not exist</string>
+    <string name="toast_city_not_found">City was not found. Try with different name.</string>
+    <string name="toast_something_went_wrong_try_again">Something went wrong. Try again.</string>
+    <string name="toast_response_not_known">Server response is unknown.</string>
+    <string name="toast_request_timeout">Request timed out. Try again.</string>
 </resources>
