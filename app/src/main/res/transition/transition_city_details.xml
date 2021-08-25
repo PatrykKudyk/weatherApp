@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android"
+    android:startDelay="150"
+    android:transitionOrdering="together">
+
+    <changeBounds
+        android:duration="600"
+        android:interpolator="@android:interpolator/linear" />
+
+    <fade android:duration="800" />
+
+</transitionSet>

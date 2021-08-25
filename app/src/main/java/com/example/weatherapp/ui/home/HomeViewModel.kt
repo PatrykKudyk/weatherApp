@@ -31,6 +31,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private lateinit var hoursRecyclerViewAdapter: HoursRecyclerViewAdapter
     private lateinit var daysRecyclerViewAdapter: DaysRecyclerViewAdapter
     val primaryCity: LiveData<City?>
+    var shouldAnimate = true
 
     init {
         val cityDb = MyDatabase.getDatabase(application)
