@@ -7,7 +7,11 @@ import java.time.format.DateTimeFormatter
 class CalendarHelper {
 
     fun getDateTimeFromString(date: String): LocalDateTime {
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+        var formatter = when(date.length){
+            16 -> DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+            15 -> DateTimeFormatter.ofPattern("yyyy-MM-dd H:mm")
+            else -> DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+        }
         return LocalDateTime.parse(date, formatter)
     }
 
