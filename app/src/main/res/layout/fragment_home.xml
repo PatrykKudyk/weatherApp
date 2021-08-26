@@ -207,18 +207,18 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <!--    <androidx.constraintlayout.widget.Group-->
-    <!--        android:id="@+id/addCityGroup"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:visibility="gone"-->
-    <!--        app:constraint_referenced_ids="addCityLayout" />-->
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/addCityGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="addCityLayout" />
 
-    <!--    <androidx.constraintlayout.widget.Group-->
-    <!--        android:id="@+id/showWeatherGroup"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:visibility="gone"-->
-    <!--        app:constraint_referenced_ids="mainConstraint,fabSwap" />-->
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/showWeatherGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="mainConstraint,fabSwap" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

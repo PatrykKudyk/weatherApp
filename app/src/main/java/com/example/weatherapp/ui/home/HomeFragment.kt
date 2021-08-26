@@ -63,17 +63,16 @@ class HomeFragment : Fragment() {
 
     private fun checkPrimaryCity() {
         if (cityName.isEmpty()) {
-            binding.addCityLayout.visibility = View.VISIBLE
-            binding.mainConstraint.visibility = View.GONE
-            binding.fabSwap.visibility = View.GONE
+            binding.addCityGroup.visibility = View.VISIBLE
+            binding.showWeatherGroup.visibility = View.GONE
 
         } else {
             binding.textViewCity.text = cityName
             viewModel.fetchForecastData(cityName, requireActivity(), binding)
 
-            binding.addCityLayout.visibility = View.GONE
-            binding.mainConstraint.visibility = View.VISIBLE
-            binding.fabSwap.visibility = View.VISIBLE
+            binding.addCityGroup.visibility = View.GONE
+            binding.showWeatherGroup.visibility = View.VISIBLE
+
             Handler().postDelayed({
                 makeStartAnimations()
             },100)
@@ -87,11 +86,6 @@ class HomeFragment : Fragment() {
 
         binding.imageAddCity.setOnClickListener {
             findNavController().navigate(R.id.action_nav_home_to_add_city)
-        }
-
-        binding.fabAnimations.setOnClickListener {
-            viewModel.shouldAnimate = true
-            makeStartAnimations()
         }
     }
 
