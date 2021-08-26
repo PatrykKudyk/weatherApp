@@ -10,9 +10,21 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainConstraint"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/background_sunny">
+        android:layout_height="match_parent">
 
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/backgroundConstraint"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:id="@+id/backgroundView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_sunny"
+                android:visibility="gone" />
+
+        </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/cityNameConstraint"
@@ -162,16 +174,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_swap" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAnimation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_arr_rounded" />
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/addCityLayout"

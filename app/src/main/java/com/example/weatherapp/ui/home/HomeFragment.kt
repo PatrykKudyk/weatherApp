@@ -36,9 +36,9 @@ class HomeFragment : Fragment() {
             city?.let {
                 cityName = city.name
                 checkPrimaryCity()
-                makeStartAnimations()
             }
         })
+        checkPrimaryCity()
         initListeners()
 
         return root
@@ -46,11 +46,11 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        makeStartAnimations()
-    }
+        Handler().postDelayed({
+            makeStartAnimations()
+        },100)    }
 
     override fun onStop() {
-        binding.mainConstraint.visibility = View.GONE
         makeViewsGone()
         viewModel.shouldAnimate = true
         super.onStop()
@@ -68,13 +68,15 @@ class HomeFragment : Fragment() {
             binding.fabSwap.visibility = View.GONE
 
         } else {
-
             binding.textViewCity.text = cityName
             viewModel.fetchForecastData(cityName, requireActivity(), binding)
 
             binding.addCityLayout.visibility = View.GONE
             binding.mainConstraint.visibility = View.VISIBLE
             binding.fabSwap.visibility = View.VISIBLE
+            Handler().postDelayed({
+                makeStartAnimations()
+            },100)
         }
     }
 
@@ -87,70 +89,47 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_nav_home_to_add_city)
         }
 
-        binding.fabAnimation.setOnClickListener {
+        binding.fabAnimations.setOnClickListener {
+            viewModel.shouldAnimate = true
             makeStartAnimations()
         }
     }
 
     private fun makeStartAnimations() {
-        if (viewModel.shouldAnimate) {
-            binding.mainConstraint.visibility = View.GONE
+        if (viewModel.shouldAnimate && binding.mainConstraint.visibility == View.VISIBLE) {
             makeViewsGone()
 
-            Handler().postDelayed({
-                if (_binding != null)
-                    animateBackground()
-            }, 50)
+            val tBackground = TransitionInflater.from(requireContext())
+                .inflateTransition(R.transition.transition_weather_background_showup)
+            val tCityName = TransitionInflater.from(requireContext())
+                .inflateTransition(R.transition.transition_city_name)
+            val tCityDesc = TransitionInflater.from(requireContext())
+                .inflateTransition(R.transition.transition_city_details)
+            val tCityRecyclers = TransitionInflater.from(requireContext())
+                .inflateTransition(R.transition.transition_city_forecast)
+
+            TransitionManager.beginDelayedTransition(binding.backgroundConstraint, tBackground)
+            TransitionManager.beginDelayedTransition(binding.cityNameConstraint, tCityName)
+            TransitionManager.beginDelayedTransition(binding.conditionConstraint, tCityDesc)
+            TransitionManager.beginDelayedTransition(binding.recyclersConstraint, tCityRecyclers)
+
+            makeViewsVisible()
 
             Handler().postDelayed({
-                if (_binding != null)
-                    animateWeather()
-            }, 1600)
+                if (_binding != null) {
+                    TransitionManager.endTransitions(binding.cityNameConstraint)
+                    TransitionManager.endTransitions(binding.conditionConstraint)
+                    TransitionManager.endTransitions(binding.recyclersConstraint)
+                    TransitionManager.endTransitions(binding.backgroundConstraint)
+                }
+            }, 1400)
 
             viewModel.shouldAnimate = false
         }
     }
 
-
-    private fun animateBackground() {
-        val tBackground = TransitionInflater.from(requireContext())
-            .inflateTransition(R.transition.transition_weather_background_showup)
-
-        TransitionManager.beginDelayedTransition(binding.mainConstraint, tBackground)
-
-        binding.mainConstraint.visibility = View.VISIBLE
-
-        Handler().postDelayed({
-            if (_binding != null) {
-                TransitionManager.endTransitions(binding.mainConstraint)
-            }
-        }, 1500)
-    }
-
-    private fun animateWeather() {
-        val tCityName = TransitionInflater.from(requireContext())
-            .inflateTransition(R.transition.transition_city_name)
-        val tCityDesc = TransitionInflater.from(requireContext())
-            .inflateTransition(R.transition.transition_city_details)
-        val tCityRecyclers = TransitionInflater.from(requireContext())
-            .inflateTransition(R.transition.transition_city_forecast)
-
-        TransitionManager.beginDelayedTransition(binding.cityNameConstraint, tCityName)
-        TransitionManager.beginDelayedTransition(binding.conditionConstraint, tCityDesc)
-        TransitionManager.beginDelayedTransition(binding.recyclersConstraint, tCityRecyclers)
-
-        makeViewsVisible()
-
-        Handler().postDelayed({
-            if (_binding != null) {
-                TransitionManager.endTransitions(binding.cityNameConstraint)
-                TransitionManager.endTransitions(binding.conditionConstraint)
-                TransitionManager.endTransitions(binding.recyclersConstraint)
-            }
-        }, 1000)
-    }
-
     private fun makeViewsGone() {
+        binding.backgroundView.visibility = View.GONE
         binding.textViewCity.visibility = View.GONE
         binding.textViewTemperature.visibility = View.GONE
         binding.textViewDescription.visibility = View.GONE
@@ -163,6 +142,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun makeViewsVisible() {
+        binding.backgroundView.visibility = View.VISIBLE
         binding.textViewCity.visibility = View.VISIBLE
         binding.textViewTemperature.visibility = View.VISIBLE
         binding.textViewDescription.visibility = View.VISIBLE
