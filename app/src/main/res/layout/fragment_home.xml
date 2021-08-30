@@ -20,8 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        tools:visibility="visible"
-        app:constraint_referenced_ids="mainConstraint,fabSwap" />
+        app:constraint_referenced_ids="mainConstraint,fabSwap"
+        tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainConstraint"
@@ -68,8 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@id/cityNameConstraint"
-            tools:visibility="visible">
+            app:layout_constraintTop_toBottomOf="@id/cityNameConstraint">
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/middleScreenVerticalGuideline"
@@ -139,33 +138,43 @@
 
         </android.support.constraint.ConstraintLayout>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabDetails"
-            android:layout_width="wrap_content"
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/fabsConstraint"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:visibility="gone"
-            tools:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/conditionConstraint"
-            app:srcCompat="@drawable/ic_fullscreen_enter" />
+            app:layout_constraintTop_toBottomOf="@id/conditionConstraint">
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_fullscreen_enter" />
+
+        </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/detailsConstraint"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="8dp"
             android:visibility="gone"
-            tools:visibility="visible"
-            app:layout_constraintTop_toBottomOf="@id/fabDetails">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fabsConstraint"
+            tools:visibility="visible">
 
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:fillViewport="true"
                 android:layout_marginBottom="8dp"
+                android:fillViewport="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -179,8 +188,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:columns="2"
-                        app:viewsGravity="start"
-                        app:lastRowViewsGravity="start"/>
+                        app:lastRowViewsGravity="start"
+                        app:viewsGravity="start" />
 
 
                 </LinearLayout>
@@ -196,7 +205,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fabDetails">
+            app:layout_constraintTop_toBottomOf="@+id/fabsConstraint">
 
             <View
                 android:id="@+id/recyclerTopSeparator"

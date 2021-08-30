@@ -53,7 +53,7 @@ constructor(
     }
 
     fun createTable(items: ArrayList<InformationField>) {
-        initTopAndBottomLine()
+//        initTopAndBottomLine()
         initFields(items)
     }
 
@@ -116,14 +116,14 @@ constructor(
         constraintSet.connect(
             verticalLayout.id,
             ConstraintSet.TOP,
-            topLine.id,
-            ConstraintSet.BOTTOM
+            this.id,
+            ConstraintSet.TOP
         )
         constraintSet.connect(
             verticalLayout.id,
             ConstraintSet.BOTTOM,
-            bottomLine.id,
-            ConstraintSet.TOP
+            this.id,
+            ConstraintSet.BOTTOM
         )
         constraintSet.connect(
             verticalLayout.id,

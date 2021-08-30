@@ -65,10 +65,6 @@ class HomeFragment : Fragment() {
         if (cityName.isEmpty()) {
             binding.addCityGroup.visibility = View.VISIBLE
             binding.showWeatherGroup.visibility = View.GONE
-//            binding.addCityLayout.visibility = View.VISIBLE
-//            binding.fabSwap.visibility = View.GONE
-//            binding.mainConstraint.visibility = View.GONE
-//            binding.fabDetails.visibility = View.GONE
 
         } else {
             binding.textViewCity.text = cityName
@@ -76,10 +72,6 @@ class HomeFragment : Fragment() {
 
             binding.addCityGroup.visibility = View.GONE
             binding.showWeatherGroup.visibility = View.VISIBLE
-//            binding.addCityLayout.visibility = View.GONE
-//            binding.fabSwap.visibility = View.VISIBLE
-//            binding.mainConstraint.visibility = View.VISIBLE
-//            binding.fabDetails.visibility = View.VISIBLE
 
             Handler().postDelayed({
                 makeStartAnimations()
@@ -126,6 +118,7 @@ class HomeFragment : Fragment() {
             TransitionManager.beginDelayedTransition(binding.backgroundConstraint, tBackground)
             TransitionManager.beginDelayedTransition(binding.cityNameConstraint, tCityName)
             TransitionManager.beginDelayedTransition(binding.conditionConstraint, tCityDesc)
+            TransitionManager.beginDelayedTransition(binding.fabsConstraint, tCityDesc)
             TransitionManager.beginDelayedTransition(binding.recyclersConstraint, tCityRecyclers)
 
             makeViewsVisible()
