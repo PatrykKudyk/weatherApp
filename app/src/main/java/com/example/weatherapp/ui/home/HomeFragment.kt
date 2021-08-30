@@ -90,16 +90,52 @@ class HomeFragment : Fragment() {
 
         binding.fabDetails.setOnClickListener {
             if (!viewModel.areDetailsVisible){
-                binding.recyclersConstraint.visibility = View.GONE
-                binding.detailsConstraint.visibility = View.VISIBLE
-                binding.fabDetails.setImageDrawable(requireContext().getDrawable(R.drawable.ic_fullscreen_exit))
+                showDetails()
             } else {
-                binding.recyclersConstraint.visibility = View.VISIBLE
-                binding.detailsConstraint.visibility = View.GONE
-                binding.fabDetails.setImageDrawable(requireContext().getDrawable(R.drawable.ic_fullscreen_enter))
+                hideDetails()
             }
             viewModel.areDetailsVisible = !viewModel.areDetailsVisible
         }
+    }
+
+    private fun hideDetails() {
+        val tSwipeOut = TransitionInflater.from(requireContext())
+            .inflateTransition(R.transition.transition_swipe_out)
+        val tSwipeIn = TransitionInflater.from(requireContext())
+            .inflateTransition(R.transition.transition_swipe_in)
+
+        TransitionManager.beginDelayedTransition(binding.recyclersConstraint, tSwipeIn)
+        TransitionManager.beginDelayedTransition(binding.detailsConstraint, tSwipeOut)
+
+        binding.recyclersConstraint.visibility = View.VISIBLE
+        binding.detailsScrollView.visibility = View.GONE
+
+        Handler().postDelayed({
+            if (_binding != null) {
+                TransitionManager.endTransitions(binding.recyclersConstraint)
+                TransitionManager.endTransitions(binding.detailsConstraint)
+            }
+        }, 500)
+    }
+
+    private fun showDetails() {
+        val tSwipeOut = TransitionInflater.from(requireContext())
+            .inflateTransition(R.transition.transition_swipe_out)
+        val tSwipeIn = TransitionInflater.from(requireContext())
+            .inflateTransition(R.transition.transition_swipe_in)
+
+        TransitionManager.beginDelayedTransition(binding.recyclersConstraint, tSwipeOut)
+        TransitionManager.beginDelayedTransition(binding.detailsConstraint, tSwipeIn)
+
+        binding.recyclersConstraint.visibility = View.GONE
+        binding.detailsScrollView.visibility = View.VISIBLE
+
+        Handler().postDelayed({
+            if (_binding != null) {
+                TransitionManager.endTransitions(binding.recyclersConstraint)
+                TransitionManager.endTransitions(binding.detailsConstraint)
+            }
+        }, 500)
     }
 
     private fun makeStartAnimations() {
@@ -148,6 +184,7 @@ class HomeFragment : Fragment() {
         binding.recyclerHours.visibility = View.GONE
         binding.recyclerDays.visibility = View.GONE
         binding.fabDetails.visibility = View.GONE
+        binding.detailsConstraint.visibility = View.GONE
     }
 
     private fun makeViewsVisible() {
@@ -162,6 +199,7 @@ class HomeFragment : Fragment() {
         binding.recyclerHours.visibility = View.VISIBLE
         binding.recyclerDays.visibility = View.VISIBLE
         binding.fabDetails.visibility = View.VISIBLE
+        binding.detailsConstraint.visibility = View.VISIBLE
     }
 
 }

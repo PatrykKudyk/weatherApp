@@ -156,7 +156,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_fullscreen_enter" />
+                app:srcCompat="@drawable/ic_swap" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -165,16 +165,16 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
-            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fabsConstraint"
-            tools:visibility="visible">
+            app:layout_constraintTop_toBottomOf="@id/fabsConstraint">
 
             <ScrollView
+                android:id="@+id/detailsScrollView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginBottom="8dp"
                 android:fillViewport="true"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -255,7 +255,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_swap" />
+        app:srcCompat="@drawable/ic_city" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/addCityLayout"
