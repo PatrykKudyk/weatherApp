@@ -65,6 +65,10 @@ class HomeFragment : Fragment() {
         if (cityName.isEmpty()) {
             binding.addCityGroup.visibility = View.VISIBLE
             binding.showWeatherGroup.visibility = View.GONE
+//            binding.addCityLayout.visibility = View.VISIBLE
+//            binding.fabSwap.visibility = View.GONE
+//            binding.mainConstraint.visibility = View.GONE
+//            binding.fabDetails.visibility = View.GONE
 
         } else {
             binding.textViewCity.text = cityName
@@ -72,6 +76,10 @@ class HomeFragment : Fragment() {
 
             binding.addCityGroup.visibility = View.GONE
             binding.showWeatherGroup.visibility = View.VISIBLE
+//            binding.addCityLayout.visibility = View.GONE
+//            binding.fabSwap.visibility = View.VISIBLE
+//            binding.mainConstraint.visibility = View.VISIBLE
+//            binding.fabDetails.visibility = View.VISIBLE
 
             Handler().postDelayed({
                 makeStartAnimations()
@@ -86,6 +94,19 @@ class HomeFragment : Fragment() {
 
         binding.imageAddCity.setOnClickListener {
             findNavController().navigate(R.id.action_nav_home_to_add_city)
+        }
+
+        binding.fabDetails.setOnClickListener {
+            if (!viewModel.areDetailsVisible){
+                binding.recyclersConstraint.visibility = View.GONE
+                binding.detailsConstraint.visibility = View.VISIBLE
+                binding.fabDetails.setImageDrawable(requireContext().getDrawable(R.drawable.ic_fullscreen_exit))
+            } else {
+                binding.recyclersConstraint.visibility = View.VISIBLE
+                binding.detailsConstraint.visibility = View.GONE
+                binding.fabDetails.setImageDrawable(requireContext().getDrawable(R.drawable.ic_fullscreen_enter))
+            }
+            viewModel.areDetailsVisible = !viewModel.areDetailsVisible
         }
     }
 
@@ -133,6 +154,7 @@ class HomeFragment : Fragment() {
         binding.recyclerBottomSeparator.visibility = View.GONE
         binding.recyclerHours.visibility = View.GONE
         binding.recyclerDays.visibility = View.GONE
+        binding.fabDetails.visibility = View.GONE
     }
 
     private fun makeViewsVisible() {
@@ -146,6 +168,7 @@ class HomeFragment : Fragment() {
         binding.recyclerBottomSeparator.visibility = View.VISIBLE
         binding.recyclerHours.visibility = View.VISIBLE
         binding.recyclerDays.visibility = View.VISIBLE
+        binding.fabDetails.visibility = View.VISIBLE
     }
 
 }

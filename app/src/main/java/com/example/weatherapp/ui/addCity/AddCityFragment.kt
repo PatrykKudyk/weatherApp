@@ -31,6 +31,12 @@ class AddCityFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(AddCityViewModel::class.java)
         _binding = FragmentAddCityBinding.inflate(inflater, container, false)
 
+        initListeners()
+
+        return binding.root
+    }
+
+    private fun initListeners() {
         binding.addCityButton.setOnClickListener {
             viewModel.hideKeyboard((context as MainActivity))
             val givenCityName = binding.cityNameEditText.text.toString()
@@ -79,8 +85,6 @@ class AddCityFragment : Fragment() {
                 showSimpleToast(requireContext().getString(R.string.noCityGiven))
             }
         }
-
-        return binding.root
     }
 
     private fun showSimpleToast(text: String) {
@@ -90,6 +94,7 @@ class AddCityFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        viewModel.hideKeyboard(requireActivity())
         _binding = null
     }
 }

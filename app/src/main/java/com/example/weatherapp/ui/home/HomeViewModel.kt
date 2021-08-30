@@ -16,6 +16,7 @@ import com.example.weatherapp.db.city.City
 import com.example.weatherapp.db.city.CityDao
 import com.example.weatherapp.helpers.CalendarHelper
 import com.example.weatherapp.models.CityForecast
+import com.example.weatherapp.models.InformationField
 import com.example.weatherapp.models.Mocks
 import com.example.weatherapp.services.ForecastService
 import com.example.weatherapp.services.ServiceBuilder
@@ -32,6 +33,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private lateinit var daysRecyclerViewAdapter: DaysRecyclerViewAdapter
     val primaryCity: LiveData<City?>
     var shouldAnimate = true
+    var areDetailsVisible = false
 
     init {
         val cityDb = MyDatabase.getDatabase(application)
@@ -94,6 +96,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                 LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
             binding.recyclerHours.adapter = hoursRecyclerViewAdapter
             hoursRecyclerViewAdapter.setItems(forecast.forecast.forecastday[0].hour)
+            binding.recyclerHours.isNestedScrollingEnabled = false
 
             val currentHourPosition = calculateCurrentHourPosition(forecast)
             (binding.recyclerHours.layoutManager as LinearLayoutManager).scrollToPosition(
@@ -104,6 +107,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             binding.recyclerDays.layoutManager = LinearLayoutManager(activity)
             binding.recyclerDays.adapter = daysRecyclerViewAdapter
             daysRecyclerViewAdapter.setItems(forecast.forecast.forecastday)
+            binding.recyclerDays.isNestedScrollingEnabled = false
 
             binding.textViewTemperature.text =
                 "${forecast.forecast.forecastday[0].hour[currentHourPosition].temp_c.toInt()} °C"
@@ -113,6 +117,18 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             binding.textViewLowTemperature.text =
                 "L: " + forecast.forecast.forecastday[0].day.mintemp_c.toInt().toString()
 
+
+            binding.detailsTable.createTable(
+                arrayListOf(
+                    InformationField("tytuł", "opis"),
+                    InformationField("tytuł", "opis"),
+                    InformationField("tytuł", "opis"),
+                    InformationField("tytuł", "opis"),
+                    InformationField("tytuł", "opis"),
+                    InformationField("tytuł", "opis"),
+                    InformationField("tytuł", "opis"),
+                )
+            )
         }
     }
 
