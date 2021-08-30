@@ -69,12 +69,12 @@ constructor(
 
         val paramsTop = LayoutParams(
             LayoutParams.MATCH_PARENT,
-            2
+            4
         )
 
         val paramsBottom = LayoutParams(
             LayoutParams.MATCH_PARENT,
-            2
+            4
         )
 
         topLine.layoutParams = paramsTop
@@ -173,7 +173,7 @@ constructor(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 10.0f
             )
-            params.setMargins(8)
+            params.setMargins(16)
 
             infoCV.layoutParams = params
 
@@ -240,7 +240,6 @@ constructor(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
-        params.setMargins(16, 0, 16, 0)
         layout.layoutParams = params
         return layout
     }
@@ -250,7 +249,7 @@ constructor(
         view.setBackgroundColor(context.getColor(R.color.white))
         val params = LayoutParams(
             LayoutParams.MATCH_PARENT,
-            1
+            2
         )
         view.layoutParams = params
         return view

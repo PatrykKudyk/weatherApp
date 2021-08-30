@@ -120,13 +120,19 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
             binding.detailsTable.createTable(
                 arrayListOf(
-                    InformationField("tytuł", "opis"),
-                    InformationField("tytuł", "opis"),
-                    InformationField("tytuł", "opis"),
-                    InformationField("tytuł", "opis"),
-                    InformationField("tytuł", "opis"),
-                    InformationField("tytuł", "opis"),
-                    InformationField("tytuł", "opis"),
+                    InformationField(activity.getString(R.string.chance_of_rain).uppercase(), forecast.forecast.forecastday[0].day.daily_chance_of_rain.toString() + " %"),
+                    InformationField(activity.getString(R.string.chance_of_snow).uppercase(), forecast.forecast.forecastday[0].day.daily_chance_of_snow.toString() + " %"),
+                    InformationField(activity.getString(R.string.humidity).uppercase(), forecast.forecast.forecastday[0].day.avghumidity.toString() + " %"),
+                    InformationField(activity.getString(R.string.feels_like).uppercase(), forecast.current.feelslike_c.toString() + " °C"),
+                    InformationField(activity.getString(R.string.wind_dir).uppercase(), forecast.current.wind_dir),
+                    InformationField(activity.getString(R.string.wind_speed).uppercase(), forecast.current.wind_kph.toString() + " km/h"),
+                    InformationField(activity.getString(R.string.pressure).uppercase(), forecast.current.pressure_mb.toString() + " hPa"),
+                    InformationField(activity.getString(R.string.clouds).uppercase(), forecast.current.cloud.toString() + " %"),
+                    InformationField(activity.getString(R.string.sunrise).uppercase(), forecast.forecast.forecastday[0].astro.sunrise),
+                    InformationField(activity.getString(R.string.sunset).uppercase(), forecast.forecast.forecastday[0].astro.sunset),
+                    InformationField(activity.getString(R.string.moonrise).uppercase(), forecast.forecast.forecastday[0].astro.moonrise),
+                    InformationField(activity.getString(R.string.moonset).uppercase(), forecast.forecast.forecastday[0].astro.moonset),
+                    InformationField(activity.getString(R.string.moon_phase).uppercase(), forecast.forecast.forecastday[0].astro.moon_phase)
                 )
             )
         }

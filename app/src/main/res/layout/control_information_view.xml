@@ -3,24 +3,22 @@
 
     <TextView
         android:id="@+id/titleTextView"
-        style="@style/textWhiteBold"
+        style="@style/textGreyRegular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Wiatr"
-        android:textSize="@dimen/text_size_medium" />
+        android:textSize="@dimen/text_size_small" />
 
     <TextView
         android:id="@+id/descriptionTextView"
-        style="@style/textWhiteRegular"
+        style="@style/textWhiteBold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="50 mph"
-        android:textSize="@dimen/text_size_normal" />
+        android:textSize="@dimen/text_size_medium" />
 
 
 </merge>

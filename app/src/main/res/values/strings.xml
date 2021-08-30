@@ -18,4 +18,17 @@
     <string name="toast_something_went_wrong_try_again">Something went wrong. Try again.</string>
     <string name="toast_response_not_known">Server response is unknown.</string>
     <string name="toast_request_timeout">Request timed out. Try again.</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+    <string name="moonrise">Moonrise</string>
+    <string name="moonset">Moonset</string>
+    <string name="chance_of_rain">Chance of rain</string>
+    <string name="chance_of_snow">Chance of snow</string>
+    <string name="humidity">Humidity</string>
+    <string name="wind_speed">Wind speed</string>
+    <string name="wind_dir">Wind direction</string>
+    <string name="feels_like">Feels like</string>
+    <string name="pressure">Pressure</string>
+    <string name="moon_phase">Moon phase</string>
+    <string name="clouds">Clouds</string>
 </resources>

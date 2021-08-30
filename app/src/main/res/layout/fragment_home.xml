@@ -180,7 +180,7 @@
                         android:layout_height="wrap_content"
                         app:columns="2"
                         app:viewsGravity="start"
-                        app:lastRowViewsGravity="center"/>
+                        app:lastRowViewsGravity="start"/>
 
 
                 </LinearLayout>
