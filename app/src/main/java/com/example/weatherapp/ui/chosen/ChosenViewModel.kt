@@ -33,7 +33,9 @@ class ChosenViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun initRecyclerView(activity: Activity, binding: FragmentChosenBinding) {
-        fetchedCities.add(null)
+        if (fetchedCities.size == 0)
+            fetchedCities.add(null)
+
         citiesRecyclerViewAdapter = CitiesRecyclerViewAdapter(activity)
         binding.citiesRecyclerView.layoutManager = LinearLayoutManager(activity)
         binding.citiesRecyclerView.adapter = citiesRecyclerViewAdapter

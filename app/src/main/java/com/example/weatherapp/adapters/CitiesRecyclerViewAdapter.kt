@@ -7,7 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.weatherapp.MainActivity
 import com.example.weatherapp.R
 import com.example.weatherapp.helpers.CalendarHelper
 import com.example.weatherapp.helpers.WeatherDrawablesHelper
@@ -74,7 +78,8 @@ class CitiesRecyclerViewAdapter(private val context: Context) :
             addConstraint.visibility = View.VISIBLE
             cityConstraint.visibility = View.GONE
             addImage.setOnClickListener {
-
+                val navController = Navigation.findNavController(itemView)
+                navController.navigate(R.id.action_nav_chosen_to_add_city)
             }
         }
 
