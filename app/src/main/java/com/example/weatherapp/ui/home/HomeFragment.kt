@@ -184,6 +184,7 @@ class HomeFragment : Fragment() {
         binding.recyclerHours.visibility = View.GONE
         binding.recyclerDays.visibility = View.GONE
         binding.fabDetails.visibility = View.GONE
+        binding.fabSwap.visibility = View.GONE
         binding.detailsConstraint.visibility = View.GONE
     }
 
@@ -199,6 +200,7 @@ class HomeFragment : Fragment() {
         binding.recyclerHours.visibility = View.VISIBLE
         binding.recyclerDays.visibility = View.VISIBLE
         binding.fabDetails.visibility = View.VISIBLE
+        binding.fabSwap.visibility = View.VISIBLE
         binding.detailsConstraint.visibility = View.VISIBLE
     }
 

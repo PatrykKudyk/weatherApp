@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="mainConstraint,fabSwap"
+        app:constraint_referenced_ids="mainConstraint"
         tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -151,11 +151,25 @@
                 android:id="@+id/fabDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fab_margin"
                 android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
+                tools:visibility="visible"
+                app:layout_constraintEnd_toStartOf="@id/fabSwap"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_swap" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabSwap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fab_margin"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@+id/fabDetails"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_city"
+                tools:visibility="visible" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -246,15 +260,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabSwap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_city" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/addCityLayout"
