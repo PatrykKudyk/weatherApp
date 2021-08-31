@@ -8,6 +8,7 @@
     <dimen name="image_tiny_size">12dp</dimen>
     <dimen name="image_small_size">16dp</dimen>
     <dimen name="image_medium_size">32dp</dimen>
+    <dimen name="image_medium_big_size">48dp</dimen>
     <dimen name="image_normal_size">64dp</dimen>
     <dimen name="image_big_size">128dp</dimen>
     <dimen name="text_size_big_big">50sp</dimen>

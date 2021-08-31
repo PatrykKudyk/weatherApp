@@ -21,7 +21,13 @@
         android:id="@+id/nav_chosen"
         android:name="com.example.weatherapp.ui.chosen.ChosenFragment"
         android:label="@string/menu_chosen"
-        tools:layout="@layout/fragment_chosen" />
+        tools:layout="@layout/fragment_chosen" >
+        <action
+            android:id="@+id/action_nav_chosen_to_add_city"
+            app:enterAnim="@anim/enter_from_bottom"
+            app:popExitAnim="@anim/exit_to_bottom"
+            app:destination="@id/add_city" />
+    </fragment>
 
     <fragment
         android:id="@+id/add_city"
@@ -31,6 +37,9 @@
         <action
             android:id="@+id/action_add_city_to_nav_home"
             app:popUpTo="@id/nav_home" />
+        <action
+            android:id="@+id/action_add_city_to_nav_chosen"
+            app:popUpTo="@id/nav_chosen" />
     </fragment>
 
 </navigation>
