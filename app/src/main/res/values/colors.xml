@@ -18,9 +18,20 @@
     <color name="colorBlueSemiDark">#0D277D</color>
     <color name="colorBlueDark">#0A2173</color>
     <color name="colorBlueDarkDark">#07184E</color>
+    <color name="colorBlueDarkDarkDark">#040e2f</color>
+    <color name="colorBlueDarkDarkDarkDark">#020717</color>
 
     <color name="colorGreyLight">#C2C7D8</color>
     <color name="colorGrey">#898D9D</color>
     <color name="colorGreyMedium">#686D7D</color>
     <color name="colorGreyDark">#4D5160</color>
+    <color name="colorGreyDarkDark">#393c47</color>
+    <color name="colorGreyDarkDarkDark">#2d3039</color>
+    <color name="colorGreyDarkDarkDarkDark">#22242a</color>
+
+    <color name="colorYellow">#ffbf00</color>
+    <color name="colorYellowMedium">#cc9900</color>
+    <color name="colorYellowMediumDark">#997300</color>
+    <color name="colorYellowDark">#664d00</color>
+
 </resources>

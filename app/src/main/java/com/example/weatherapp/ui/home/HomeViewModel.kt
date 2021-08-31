@@ -15,6 +15,7 @@ import com.example.weatherapp.db.MyDatabase
 import com.example.weatherapp.db.city.City
 import com.example.weatherapp.db.city.CityDao
 import com.example.weatherapp.helpers.CalendarHelper
+import com.example.weatherapp.helpers.WeatherDrawablesHelper
 import com.example.weatherapp.models.CityForecast
 import com.example.weatherapp.models.InformationField
 import com.example.weatherapp.models.Mocks
@@ -134,6 +135,11 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                     InformationField(activity.getString(R.string.moonset).uppercase(), forecast.forecast.forecastday[0].astro.moonset),
                     InformationField(activity.getString(R.string.moon_phase).uppercase(), forecast.forecast.forecastday[0].astro.moon_phase)
                 )
+            )
+            binding.backgroundView.background = WeatherDrawablesHelper().getBackgroundDrawable(
+                forecast.forecast.forecastday[0].hour[currentHourPosition].is_day,
+                forecast.forecast.forecastday[0].day.condition.code,
+                activity.applicationContext
             )
         }
     }

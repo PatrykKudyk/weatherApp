@@ -14,6 +14,14 @@ class WeatherDrawablesHelper {
         }
     }
 
+    fun getBackgroundDrawable(isDay: Int, code: Int, context: Context): Drawable? {
+        return if (isDay == 1){
+            return getDayBackgroundDrawable(code, context)
+        } else {
+            return getNightBackgroundDrawable(code, context)
+        }
+    }
+
     private fun getDayImage(code: Int, context: Context): Drawable? {
         return when (code) {
             1000 -> return context.getDrawable(R.drawable.day_113)
@@ -118,6 +126,114 @@ class WeatherDrawablesHelper {
             1276 -> return context.getDrawable(R.drawable.night_389)
             1279 -> return context.getDrawable(R.drawable.night_392)
             1282 -> return context.getDrawable(R.drawable.night_395)
+            else -> return null
+        }
+    }
+
+    private fun getDayBackgroundDrawable(code: Int, context: Context): Drawable? {
+        return when (code) {
+            1000 -> return context.getDrawable(R.drawable.background_blue_day)
+            1003 -> return context.getDrawable(R.drawable.background_blue_day)
+            1006 -> return context.getDrawable(R.drawable.background_blue_grey_day)
+            1009 -> return context.getDrawable(R.drawable.background_blue_grey_day)
+            1030 -> return context.getDrawable(R.drawable.background_grey_day)
+            1063 -> return context.getDrawable(R.drawable.background_blue_grey_day)
+            1066 -> return context.getDrawable(R.drawable.background_blue_grey_day)
+            1069 -> return context.getDrawable(R.drawable.background_blue_grey_day)
+            1072 -> return context.getDrawable(R.drawable.background_grey_day)
+            1087 -> return context.getDrawable(R.drawable.background_grey_night)
+            1114 -> return context.getDrawable(R.drawable.background_grey_day)
+            1117 -> return context.getDrawable(R.drawable.background_grey_day)
+            1135 -> return context.getDrawable(R.drawable.background_grey_day)
+            1147 -> return context.getDrawable(R.drawable.background_grey_day)
+            1150 -> return context.getDrawable(R.drawable.background_grey_day)
+            1153 -> return context.getDrawable(R.drawable.background_grey_day)
+            1168 -> return context.getDrawable(R.drawable.background_grey_day)
+            1171 -> return context.getDrawable(R.drawable.background_grey_day)
+            1180 -> return context.getDrawable(R.drawable.background_blue_grey_day)
+            1183 -> return context.getDrawable(R.drawable.background_grey_day)
+            1186 -> return context.getDrawable(R.drawable.background_blue_grey_day)
+            1189 -> return context.getDrawable(R.drawable.background_grey_day)
+            1192 -> return context.getDrawable(R.drawable.background_blue_grey_day)
+            1195 -> return context.getDrawable(R.drawable.background_grey_day)
+            1198 -> return context.getDrawable(R.drawable.background_grey_day)
+            1201 -> return context.getDrawable(R.drawable.background_grey_day)
+            1204 -> return context.getDrawable(R.drawable.background_grey_day)
+            1207 -> return context.getDrawable(R.drawable.background_grey_day)
+            1210 -> return context.getDrawable(R.drawable.background_blue_grey_day)
+            1213 -> return context.getDrawable(R.drawable.background_grey_day)
+            1216 -> return context.getDrawable(R.drawable.background_blue_grey_day)
+            1219 -> return context.getDrawable(R.drawable.background_grey_day)
+            1222 -> return context.getDrawable(R.drawable.background_blue_grey_day)
+            1225 -> return context.getDrawable(R.drawable.background_grey_day)
+            1237 -> return context.getDrawable(R.drawable.background_grey_day)
+            1240 -> return context.getDrawable(R.drawable.background_blue_grey_day)
+            1243 -> return context.getDrawable(R.drawable.background_blue_grey_day)
+            1246 -> return context.getDrawable(R.drawable.background_grey_night)
+            1249 -> return context.getDrawable(R.drawable.background_blue_grey_day)
+            1252 -> return context.getDrawable(R.drawable.background_blue_grey_day)
+            1255 -> return context.getDrawable(R.drawable.background_blue_grey_day)
+            1258 -> return context.getDrawable(R.drawable.background_blue_grey_day)
+            1261 -> return context.getDrawable(R.drawable.background_blue_grey_day)
+            1264 -> return context.getDrawable(R.drawable.background_blue_grey_day)
+            1273 -> return context.getDrawable(R.drawable.background_grey_night)
+            1276 -> return context.getDrawable(R.drawable.background_grey_night)
+            1279 -> return context.getDrawable(R.drawable.background_grey_night)
+            1282 -> return context.getDrawable(R.drawable.background_grey_night)
+            else -> return null
+        }
+    }
+
+    private fun getNightBackgroundDrawable(code: Int, context: Context): Drawable? {
+        return when (code) {
+            1000 -> return context.getDrawable(R.drawable.background_blue_night)
+            1003 -> return context.getDrawable(R.drawable.background_blue_night)
+            1006 -> return context.getDrawable(R.drawable.background_blue_grey_night)
+            1009 -> return context.getDrawable(R.drawable.background_blue_grey_night)
+            1030 -> return context.getDrawable(R.drawable.background_grey_night)
+            1063 -> return context.getDrawable(R.drawable.background_blue_grey_night)
+            1066 -> return context.getDrawable(R.drawable.background_blue_grey_night)
+            1069 -> return context.getDrawable(R.drawable.background_blue_grey_night)
+            1072 -> return context.getDrawable(R.drawable.background_grey_night)
+            1087 -> return context.getDrawable(R.drawable.background_grey_night)
+            1114 -> return context.getDrawable(R.drawable.background_grey_night)
+            1117 -> return context.getDrawable(R.drawable.background_grey_night)
+            1135 -> return context.getDrawable(R.drawable.background_grey_night)
+            1147 -> return context.getDrawable(R.drawable.background_grey_night)
+            1150 -> return context.getDrawable(R.drawable.background_grey_night)
+            1153 -> return context.getDrawable(R.drawable.background_grey_night)
+            1168 -> return context.getDrawable(R.drawable.background_grey_night)
+            1171 -> return context.getDrawable(R.drawable.background_grey_night)
+            1180 -> return context.getDrawable(R.drawable.background_blue_grey_night)
+            1183 -> return context.getDrawable(R.drawable.background_grey_night)
+            1186 -> return context.getDrawable(R.drawable.background_blue_grey_night)
+            1189 -> return context.getDrawable(R.drawable.background_grey_night)
+            1192 -> return context.getDrawable(R.drawable.background_blue_grey_night)
+            1195 -> return context.getDrawable(R.drawable.background_grey_night)
+            1198 -> return context.getDrawable(R.drawable.background_grey_night)
+            1201 -> return context.getDrawable(R.drawable.background_grey_night)
+            1204 -> return context.getDrawable(R.drawable.background_grey_night)
+            1207 -> return context.getDrawable(R.drawable.background_grey_night)
+            1210 -> return context.getDrawable(R.drawable.background_blue_grey_night)
+            1213 -> return context.getDrawable(R.drawable.background_grey_night)
+            1216 -> return context.getDrawable(R.drawable.background_blue_grey_night)
+            1219 -> return context.getDrawable(R.drawable.background_grey_night)
+            1222 -> return context.getDrawable(R.drawable.background_blue_grey_night)
+            1225 -> return context.getDrawable(R.drawable.background_grey_night)
+            1237 -> return context.getDrawable(R.drawable.background_grey_night)
+            1240 -> return context.getDrawable(R.drawable.background_blue_grey_night)
+            1243 -> return context.getDrawable(R.drawable.background_blue_grey_night)
+            1246 -> return context.getDrawable(R.drawable.background_grey_night)
+            1249 -> return context.getDrawable(R.drawable.background_blue_grey_night)
+            1252 -> return context.getDrawable(R.drawable.background_blue_grey_night)
+            1255 -> return context.getDrawable(R.drawable.background_blue_grey_night)
+            1258 -> return context.getDrawable(R.drawable.background_blue_grey_night)
+            1261 -> return context.getDrawable(R.drawable.background_blue_grey_night)
+            1264 -> return context.getDrawable(R.drawable.background_blue_grey_night)
+            1273 -> return context.getDrawable(R.drawable.background_grey_night)
+            1276 -> return context.getDrawable(R.drawable.background_grey_night)
+            1279 -> return context.getDrawable(R.drawable.background_grey_night)
+            1282 -> return context.getDrawable(R.drawable.background_grey_night)
             else -> return null
         }
     }
