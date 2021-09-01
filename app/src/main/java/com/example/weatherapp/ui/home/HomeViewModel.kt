@@ -2,6 +2,7 @@ package com.example.weatherapp.ui.home
 
 import android.app.Activity
 import android.app.Application
+import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -32,9 +33,11 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val cityDao: CityDao
     private lateinit var hoursRecyclerViewAdapter: HoursRecyclerViewAdapter
     private lateinit var daysRecyclerViewAdapter: DaysRecyclerViewAdapter
+
     val primaryCity: LiveData<City?>
     var shouldAnimate = true
     var areDetailsVisible = false
+    lateinit var transitionHelper: HomeFragmentTransitionHelper
 
     init {
         val cityDb = MyDatabase.getDatabase(application)
@@ -42,6 +45,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         primaryCity = cityDao.primaryCity
     }
 
+    fun initTransitionHelper(binding: FragmentHomeBinding, context: Context) {
+        transitionHelper = HomeFragmentTransitionHelper(binding, context)
+    }
 
     fun fetchForecastData(cityName: String, activity: Activity, binding: FragmentHomeBinding) {
         val taskService = ServiceBuilder().buildService(ForecastService::class.java)
@@ -121,19 +127,58 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
             binding.detailsTable.createTable(
                 arrayListOf(
-                    InformationField(activity.getString(R.string.chance_of_rain).uppercase(), forecast.forecast.forecastday[0].day.daily_chance_of_rain.toString() + " %"),
-                    InformationField(activity.getString(R.string.chance_of_snow).uppercase(), forecast.forecast.forecastday[0].day.daily_chance_of_snow.toString() + " %"),
-                    InformationField(activity.getString(R.string.humidity).uppercase(), forecast.forecast.forecastday[0].day.avghumidity.toString() + " %"),
-                    InformationField(activity.getString(R.string.feels_like).uppercase(), forecast.current.feelslike_c.toString() + " °C"),
-                    InformationField(activity.getString(R.string.wind_dir).uppercase(), forecast.current.wind_dir),
-                    InformationField(activity.getString(R.string.wind_speed).uppercase(), forecast.current.wind_kph.toString() + " km/h"),
-                    InformationField(activity.getString(R.string.pressure).uppercase(), forecast.current.pressure_mb.toString() + " hPa"),
-                    InformationField(activity.getString(R.string.clouds).uppercase(), forecast.current.cloud.toString() + " %"),
-                    InformationField(activity.getString(R.string.sunrise).uppercase(), forecast.forecast.forecastday[0].astro.sunrise),
-                    InformationField(activity.getString(R.string.sunset).uppercase(), forecast.forecast.forecastday[0].astro.sunset),
-                    InformationField(activity.getString(R.string.moonrise).uppercase(), forecast.forecast.forecastday[0].astro.moonrise),
-                    InformationField(activity.getString(R.string.moonset).uppercase(), forecast.forecast.forecastday[0].astro.moonset),
-                    InformationField(activity.getString(R.string.moon_phase).uppercase(), forecast.forecast.forecastday[0].astro.moon_phase)
+                    InformationField(
+                        activity.getString(R.string.chance_of_rain).uppercase(),
+                        forecast.forecast.forecastday[0].day.daily_chance_of_rain.toString() + " %"
+                    ),
+                    InformationField(
+                        activity.getString(R.string.chance_of_snow).uppercase(),
+                        forecast.forecast.forecastday[0].day.daily_chance_of_snow.toString() + " %"
+                    ),
+                    InformationField(
+                        activity.getString(R.string.humidity).uppercase(),
+                        forecast.forecast.forecastday[0].day.avghumidity.toString() + " %"
+                    ),
+                    InformationField(
+                        activity.getString(R.string.feels_like).uppercase(),
+                        forecast.current.feelslike_c.toString() + " °C"
+                    ),
+                    InformationField(
+                        activity.getString(R.string.wind_dir).uppercase(),
+                        forecast.current.wind_dir
+                    ),
+                    InformationField(
+                        activity.getString(R.string.wind_speed).uppercase(),
+                        forecast.current.wind_kph.toString() + " km/h"
+                    ),
+                    InformationField(
+                        activity.getString(R.string.pressure).uppercase(),
+                        forecast.current.pressure_mb.toString() + " hPa"
+                    ),
+                    InformationField(
+                        activity.getString(R.string.clouds).uppercase(),
+                        forecast.current.cloud.toString() + " %"
+                    ),
+                    InformationField(
+                        activity.getString(R.string.sunrise).uppercase(),
+                        forecast.forecast.forecastday[0].astro.sunrise
+                    ),
+                    InformationField(
+                        activity.getString(R.string.sunset).uppercase(),
+                        forecast.forecast.forecastday[0].astro.sunset
+                    ),
+                    InformationField(
+                        activity.getString(R.string.moonrise).uppercase(),
+                        forecast.forecast.forecastday[0].astro.moonrise
+                    ),
+                    InformationField(
+                        activity.getString(R.string.moonset).uppercase(),
+                        forecast.forecast.forecastday[0].astro.moonset
+                    ),
+                    InformationField(
+                        activity.getString(R.string.moon_phase).uppercase(),
+                        forecast.forecast.forecastday[0].astro.moon_phase
+                    )
                 )
             )
             binding.backgroundView.background = WeatherDrawablesHelper().getBackgroundDrawable(
@@ -147,6 +192,15 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private fun calculateCurrentHourPosition(forecast: CityForecast): Int {
         val convertedDate = CalendarHelper().getDateTimeFromString(forecast.location.localtime)
         return convertedDate.hour
+    }
+
+    fun handleFabDetailsClick() {
+        if (!areDetailsVisible) {
+            transitionHelper.animateShowingDetails()
+        } else {
+            transitionHelper.animateHidingDetails()
+        }
+        areDetailsVisible = !areDetailsVisible
     }
 
 }
