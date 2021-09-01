@@ -11,8 +11,6 @@ class City(
     val id: Int,
     @ColumnInfo(name = "name")
     val name: String,
-    @ColumnInfo(name = "country")
-    val country: String,
     @ColumnInfo(name = "isPrimary")
     val isPrimary: Boolean
 )

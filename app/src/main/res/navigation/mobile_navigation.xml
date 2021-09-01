@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_add_city_to_nav_chosen"
             app:popUpTo="@id/nav_chosen" />
+        <argument
+            android:name="order_owner"
+            app:argType="com.example.weatherapp.models.enums.OrderOwnerEnum" />
     </fragment>
 
 </navigation>

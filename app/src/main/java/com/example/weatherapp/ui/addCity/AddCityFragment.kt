@@ -13,6 +13,7 @@ import com.example.weatherapp.MainActivity
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentAddCityBinding
 import com.example.weatherapp.db.city.City
+import com.example.weatherapp.models.enums.OrderOwnerEnum
 import kotlin.random.Random
 
 class AddCityFragment : Fragment() {
@@ -30,6 +31,8 @@ class AddCityFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(AddCityViewModel::class.java)
         _binding = FragmentAddCityBinding.inflate(inflater, container, false)
+
+        viewModel.orderOwner = arguments?.getSerializable("order_owner") as OrderOwnerEnum
 
         initListeners()
 
@@ -60,21 +63,12 @@ class AddCityFragment : Fragment() {
                             }
 
                             true -> {
-                                if (viewModel.isRequestDone.value == true) {
-                                    if (viewModel.fetchPrimaryCity() != null) {
-                                        viewModel.updateAsync(viewModel.chosenCity)
-                                    } else {
-                                        viewModel.insertAsync(
-                                            City(
-                                                Random.nextInt(),
-                                                viewModel.chosenCity,
-                                                "Poland",
-                                                true
-                                            )
-                                        )
+                                when (viewModel.orderOwner){
+                                    OrderOwnerEnum.HOME_FRAGMENT -> {
+                                        performClickForHomeFragment()
                                     }
-                                    requireActivity().runOnUiThread {
-                                        findNavController().navigate(R.id.action_add_city_to_nav_home)
+                                    OrderOwnerEnum.CHOSEN_FRAGMENT -> {
+                                        performClickForChosenFragment()
                                     }
                                 }
                             }
@@ -84,6 +78,36 @@ class AddCityFragment : Fragment() {
             } else {
                 showSimpleToast(requireContext().getString(R.string.noCityGiven))
             }
+        }
+    }
+
+    private fun performClickForHomeFragment() {
+        if (viewModel.isRequestDone.value == true) {
+            if (viewModel.fetchPrimaryCity() != null) {
+                viewModel.updateAsync(viewModel.chosenCity)
+            } else {
+                viewModel.insertAsync(
+                    City(
+                        Random.nextInt(),
+                        viewModel.chosenCity,
+                        true
+                    )
+                )
+            }
+            findNavController().navigate(R.id.action_add_city_to_nav_home)
+        }
+    }
+
+    private fun performClickForChosenFragment() {
+        if (viewModel.isRequestDone.value == true) {
+            viewModel.insertAsync(
+                City(
+                    Random.nextInt(),
+                    viewModel.chosenCity,
+                    false
+                )
+            )
+            findNavController().navigate(R.id.action_add_city_to_nav_chosen)
         }
     }
 

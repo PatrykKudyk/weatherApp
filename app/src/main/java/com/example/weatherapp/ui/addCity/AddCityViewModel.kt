@@ -13,6 +13,7 @@ import com.example.weatherapp.db.MyDatabase
 import com.example.weatherapp.db.city.City
 import com.example.weatherapp.db.city.CityDao
 import com.example.weatherapp.models.CityForecast
+import com.example.weatherapp.models.enums.OrderOwnerEnum
 import com.example.weatherapp.services.ForecastService
 import com.example.weatherapp.services.ServiceBuilder
 import kotlinx.coroutines.*
@@ -27,6 +28,7 @@ class AddCityViewModel(application: Application) : AndroidViewModel(application)
     var chosenCity = ""
     var isCityCorrect: Boolean? = false
     var isRequestDone: MutableLiveData<Boolean> = MutableLiveData()
+    lateinit var orderOwner: OrderOwnerEnum
 
     init {
         val cityDb = MyDatabase.getDatabase(application)
@@ -46,7 +48,6 @@ class AddCityViewModel(application: Application) : AndroidViewModel(application)
             val changedCity = City(
                 id = city.id,
                 name = cityName,
-                country = city.country,
                 isPrimary = city.isPrimary
             )
             cityDao.update(changedCity)

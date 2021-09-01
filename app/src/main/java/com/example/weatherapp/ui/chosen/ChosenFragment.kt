@@ -34,6 +34,7 @@ class ChosenFragment: Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        viewModel.savedCities.removeObservers(requireActivity())
         _binding = null
     }
 

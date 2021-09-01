@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentHomeBinding
+import com.example.weatherapp.models.enums.OrderOwnerEnum
 
 class HomeFragment : Fragment() {
 
@@ -48,7 +49,8 @@ class HomeFragment : Fragment() {
         super.onResume()
         Handler().postDelayed({
             makeStartAnimations()
-        },100)    }
+        }, 100)
+    }
 
     override fun onStop() {
         makeViewsGone()
@@ -58,6 +60,7 @@ class HomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        viewModel.primaryCity.removeObservers(requireActivity())
         _binding = null
     }
 
@@ -75,21 +78,25 @@ class HomeFragment : Fragment() {
 
             Handler().postDelayed({
                 makeStartAnimations()
-            },100)
+            }, 100)
         }
     }
 
     private fun initListeners() {
         binding.fabSwap.setOnClickListener {
-            findNavController().navigate(R.id.action_nav_home_to_add_city)
+            val bundle = Bundle()
+            bundle.putSerializable("order_owner", OrderOwnerEnum.HOME_FRAGMENT)
+            findNavController().navigate(R.id.action_nav_home_to_add_city, bundle)
         }
 
         binding.imageAddCity.setOnClickListener {
-            findNavController().navigate(R.id.action_nav_home_to_add_city)
+            val bundle = Bundle()
+            bundle.putSerializable("order_owner", OrderOwnerEnum.HOME_FRAGMENT)
+            findNavController().navigate(R.id.action_nav_home_to_add_city, bundle)
         }
 
         binding.fabDetails.setOnClickListener {
-            if (!viewModel.areDetailsVisible){
+            if (!viewModel.areDetailsVisible) {
                 showDetails()
             } else {
                 hideDetails()

@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.weatherapp.db.city.City
 import com.example.weatherapp.db.city.CityDao
 
-@Database(entities = [City::class], version = 2)
+@Database(entities = [City::class], version = 1)
 abstract class MyDatabase : RoomDatabase() {
 
     abstract fun cityDao(): CityDao

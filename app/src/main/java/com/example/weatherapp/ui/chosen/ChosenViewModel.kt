@@ -72,8 +72,10 @@ class ChosenViewModel(application: Application): AndroidViewModel(application) {
     }
 
     private fun addNewCity(cityForecast: CityForecast) {
-        fetchedCities.add(0, cityForecast)
-        citiesRecyclerViewAdapter.setItems(fetchedCities)
+        if (!fetchedCities.contains(cityForecast)){
+            fetchedCities.add(0, cityForecast)
+            citiesRecyclerViewAdapter.setItems(fetchedCities)
+        }
     }
 
 }
