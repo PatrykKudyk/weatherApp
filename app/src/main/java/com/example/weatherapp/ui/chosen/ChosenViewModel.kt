@@ -13,16 +13,17 @@ import com.example.weatherapp.db.MyDatabase
 import com.example.weatherapp.db.city.City
 import com.example.weatherapp.db.city.CityDao
 import com.example.weatherapp.models.CityForecast
+import com.example.weatherapp.models.CityForecastWithIndex
 import com.example.weatherapp.services.ForecastService
 import com.example.weatherapp.services.ServiceBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ChosenViewModel(application: Application): AndroidViewModel(application) {
+class ChosenViewModel(application: Application) : AndroidViewModel(application) {
 
     private lateinit var citiesRecyclerViewAdapter: CitiesRecyclerViewAdapter
-    private val fetchedCities = ArrayList<CityForecast?>()
+    private val fetchedCities = ArrayList<CityForecastWithIndex?>()
     private val cityDao: CityDao
     val savedCities: LiveData<List<City?>>
 
@@ -52,7 +53,12 @@ class ChosenViewModel(application: Application): AndroidViewModel(application) {
         call.enqueue(object : Callback<CityForecast> {
             override fun onResponse(call: Call<CityForecast>, response: Response<CityForecast>) {
                 when (response.code()) {
-                    200 -> addNewCity(response.body()!!)
+                    200 -> addNewCity(
+                        CityForecastWithIndex(
+                            city.id,
+                            response.body()!!
+                        )
+                    )
                 }
             }
 
@@ -71,11 +77,21 @@ class ChosenViewModel(application: Application): AndroidViewModel(application) {
         })
     }
 
-    private fun addNewCity(cityForecast: CityForecast) {
-        if (!fetchedCities.contains(cityForecast)){
+    private fun addNewCity(cityForecast: CityForecastWithIndex) {
+        if (!doesFetchedCitiesContainsCity(cityForecast.index)) {
             fetchedCities.add(0, cityForecast)
+            fetchedCities.sortByDescending{city -> city?.index}
             citiesRecyclerViewAdapter.setItems(fetchedCities)
         }
+    }
+
+    private fun doesFetchedCitiesContainsCity(index: Int): Boolean{
+        for (element in fetchedCities){
+            if (element?.index == index){
+                return true
+            }
+        }
+        return false
     }
 
 }

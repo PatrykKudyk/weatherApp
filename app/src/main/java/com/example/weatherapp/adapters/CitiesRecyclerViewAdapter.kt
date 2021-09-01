@@ -17,12 +17,13 @@ import com.example.weatherapp.R
 import com.example.weatherapp.helpers.CalendarHelper
 import com.example.weatherapp.helpers.WeatherDrawablesHelper
 import com.example.weatherapp.models.CityForecast
+import com.example.weatherapp.models.CityForecastWithIndex
 import com.example.weatherapp.models.enums.OrderOwnerEnum
 
 class CitiesRecyclerViewAdapter(private val context: Context) :
     RecyclerView.Adapter<CitiesRecyclerViewAdapter.CitiesViewHolder>() {
 
-    private var items = ArrayList<CityForecast?>()
+    private var items = ArrayList<CityForecastWithIndex?>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CitiesViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.listitem_city, parent, false)
@@ -43,7 +44,7 @@ class CitiesRecyclerViewAdapter(private val context: Context) :
     }
 
 
-    fun setItems(cities: ArrayList<CityForecast?>) {
+    fun setItems(cities: ArrayList<CityForecastWithIndex?>) {
         items = cities
         notifyDataSetChanged()
     }
@@ -93,7 +94,7 @@ class CitiesRecyclerViewAdapter(private val context: Context) :
             addConstraint.visibility = View.GONE
             cityConstraint.visibility = View.VISIBLE
 
-            val currentItem = items[position]!!
+            val currentItem = items[position]!!.forecast
             val currentHourPosition = calculateCurrentHourPosition(currentItem)
 
             timeTextView.text = CalendarHelper().getTimeFromDate(currentItem.location.localtime)
