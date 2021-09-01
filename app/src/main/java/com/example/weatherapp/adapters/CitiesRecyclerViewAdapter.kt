@@ -9,10 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.weatherapp.MainActivity
 import com.example.weatherapp.R
 import com.example.weatherapp.helpers.CalendarHelper
 import com.example.weatherapp.helpers.WeatherDrawablesHelper
@@ -24,10 +21,24 @@ class CitiesRecyclerViewAdapter(private val context: Context) :
     RecyclerView.Adapter<CitiesRecyclerViewAdapter.CitiesViewHolder>() {
 
     private var items = ArrayList<CityForecastWithIndex?>()
+    private var ROW_NORMAL = 0
+    private var ROW_ADD = 1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CitiesViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.listitem_city, parent, false)
-        return CitiesViewHolder(view)
+        return when (viewType){
+            ROW_NORMAL -> {
+                val view = LayoutInflater.from(context).inflate(R.layout.listitem_city_normal, parent, false)
+                CitiesNormalViewHolder(view)
+            }
+            ROW_ADD -> {
+                val view = LayoutInflater.from(context).inflate(R.layout.listitem_city_add, parent, false)
+                CitiesAddViewHolder(view)
+            }
+            else -> {
+                val view = LayoutInflater.from(context).inflate(R.layout.listitem_city_normal, parent, false)
+                CitiesNormalViewHolder(view)
+            }
+        }
     }
 
 
@@ -37,6 +48,14 @@ class CitiesRecyclerViewAdapter(private val context: Context) :
     ) {
         holder.initViews()
         holder.setData(position)
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (items[position] == null) {
+            ROW_ADD
+        } else {
+            ROW_NORMAL
+        }
     }
 
     override fun getItemCount(): Int {
@@ -50,50 +69,34 @@ class CitiesRecyclerViewAdapter(private val context: Context) :
     }
 
 
-    inner class CitiesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private lateinit var addConstraint: ConstraintLayout
+    open inner class CitiesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        open fun initViews() {
+
+        }
+
+        open fun setData(position: Int){
+
+        }
+    }
+
+
+    inner class CitiesNormalViewHolder(itemView: View): CitiesViewHolder(itemView){
+
         private lateinit var cityConstraint: ConstraintLayout
         private lateinit var timeTextView: TextView
         private lateinit var cityNameTextView: TextView
         private lateinit var temperatureTextView: TextView
         private lateinit var weatherImage: ImageView
-        private lateinit var addImage: ImageView
 
-        fun initViews() {
-            addConstraint = itemView.findViewById(R.id.addCityConstraint)
+        override fun initViews() {
             cityConstraint = itemView.findViewById(R.id.cityConstraint)
             timeTextView = itemView.findViewById(R.id.timeTextView)
             cityNameTextView = itemView.findViewById(R.id.cityTextView)
             temperatureTextView = itemView.findViewById(R.id.temperatureTextView)
-            addImage = itemView.findViewById(R.id.addImage)
             weatherImage = itemView.findViewById(R.id.weatherImageView)
         }
 
-        fun setData(position: Int) {
-            if (items[position] == null) {
-                prepareAddItem()
-            } else {
-                prepareWeatherItem(position)
-            }
-        }
-
-        private fun prepareAddItem() {
-            addConstraint.visibility = View.VISIBLE
-            cityConstraint.visibility = View.GONE
-            addImage.setOnClickListener {
-                val bundle = Bundle()
-                bundle.putSerializable("order_owner", OrderOwnerEnum.CHOSEN_FRAGMENT)
-
-
-                val navController = Navigation.findNavController(itemView)
-                navController.navigate(R.id.action_nav_chosen_to_add_city, bundle)
-            }
-        }
-
-        private fun prepareWeatherItem(position: Int) {
-            addConstraint.visibility = View.GONE
-            cityConstraint.visibility = View.VISIBLE
-
+        override fun setData(position: Int) {
             val currentItem = items[position]!!.forecast
             val currentHourPosition = calculateCurrentHourPosition(currentItem)
 
@@ -121,4 +124,21 @@ class CitiesRecyclerViewAdapter(private val context: Context) :
         }
     }
 
+    inner class CitiesAddViewHolder(itemView: View): CitiesViewHolder(itemView){
+        private lateinit var addImage: ImageView
+
+        override fun initViews() {
+            addImage = itemView.findViewById(R.id.addImage)
+        }
+
+        override fun setData(position: Int) {
+            addImage.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putSerializable("order_owner", OrderOwnerEnum.CHOSEN_FRAGMENT)
+
+                val navController = Navigation.findNavController(itemView)
+                navController.navigate(R.id.action_nav_chosen_to_add_city, bundle)
+            }
+        }
+    }
 }
