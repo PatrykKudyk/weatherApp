@@ -1,4 +1,4 @@
-package com.example.weatherapp.models
+package com.example.weatherapp.models.api
 
 data class DayForecast(
     val maxtemp_c: Double,

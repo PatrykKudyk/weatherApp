@@ -1,5 +1,7 @@
 package com.example.weatherapp.models
 
+import com.example.weatherapp.models.api.*
+
 class Mocks {
 
     fun getHoursWeatherList(): ArrayList<HourForecast> {

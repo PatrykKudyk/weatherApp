@@ -12,8 +12,8 @@ import com.example.weatherapp.databinding.FragmentChosenBinding
 import com.example.weatherapp.db.MyDatabase
 import com.example.weatherapp.db.city.City
 import com.example.weatherapp.db.city.CityDao
-import com.example.weatherapp.models.CityForecast
-import com.example.weatherapp.models.CityForecastWithIndex
+import com.example.weatherapp.models.api.CityForecast
+import com.example.weatherapp.models.common.CityForecastWithIndex
 import com.example.weatherapp.services.ForecastService
 import com.example.weatherapp.services.ServiceBuilder
 import retrofit2.Call

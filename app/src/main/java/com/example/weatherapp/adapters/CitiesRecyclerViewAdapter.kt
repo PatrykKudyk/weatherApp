@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.R
 import com.example.weatherapp.helpers.CalendarHelper
 import com.example.weatherapp.helpers.WeatherDrawablesHelper
-import com.example.weatherapp.models.CityForecast
-import com.example.weatherapp.models.CityForecastWithIndex
+import com.example.weatherapp.models.api.CityForecast
+import com.example.weatherapp.models.common.CityForecastWithIndex
 import com.example.weatherapp.models.enums.OrderOwnerEnum
 
 class CitiesRecyclerViewAdapter(private val context: Context) :

@@ -4,15 +4,13 @@ import android.app.Activity
 import android.app.Application
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.weatherapp.R
 import com.example.weatherapp.db.MyDatabase
 import com.example.weatherapp.db.city.City
 import com.example.weatherapp.db.city.CityDao
-import com.example.weatherapp.models.CityForecast
+import com.example.weatherapp.models.api.CityForecast
 import com.example.weatherapp.models.enums.OrderOwnerEnum
 import com.example.weatherapp.services.ForecastService
 import com.example.weatherapp.services.ServiceBuilder

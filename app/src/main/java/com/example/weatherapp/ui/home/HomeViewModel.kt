@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.R
 import com.example.weatherapp.adapters.DaysRecyclerViewAdapter
 import com.example.weatherapp.adapters.HoursRecyclerViewAdapter
@@ -17,16 +16,14 @@ import com.example.weatherapp.db.city.City
 import com.example.weatherapp.db.city.CityDao
 import com.example.weatherapp.helpers.CalendarHelper
 import com.example.weatherapp.helpers.WeatherDrawablesHelper
-import com.example.weatherapp.models.CityForecast
-import com.example.weatherapp.models.InformationField
+import com.example.weatherapp.models.api.CityForecast
+import com.example.weatherapp.models.common.InformationField
 import com.example.weatherapp.models.Mocks
 import com.example.weatherapp.services.ForecastService
 import com.example.weatherapp.services.ServiceBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
 

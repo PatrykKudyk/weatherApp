@@ -8,13 +8,11 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import androidx.core.view.marginStart
 import androidx.core.view.setMargins
 import com.example.weatherapp.R
-import com.example.weatherapp.models.InformationField
+import com.example.weatherapp.models.common.InformationField
 import com.example.weatherapp.models.enums.ViewsGravityEnum
 import kotlin.math.ceil
-import kotlin.math.roundToInt
 
 class InformationTableControlView @JvmOverloads
 constructor(

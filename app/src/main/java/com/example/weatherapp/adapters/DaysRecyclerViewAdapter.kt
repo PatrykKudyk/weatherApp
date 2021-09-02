@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.R
 import com.example.weatherapp.helpers.CalendarHelper
 import com.example.weatherapp.helpers.WeatherDrawablesHelper
-import com.example.weatherapp.models.ForecastDay
+import com.example.weatherapp.models.api.ForecastDay
 
 class DaysRecyclerViewAdapter(private val context: Context) :
     RecyclerView.Adapter<DaysRecyclerViewAdapter.DaysViewHolder>() {

@@ -10,9 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.R
 import com.example.weatherapp.helpers.CalendarHelper
 import com.example.weatherapp.helpers.WeatherDrawablesHelper
-import com.example.weatherapp.models.HourForecast
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import com.example.weatherapp.models.api.HourForecast
 
 
 class HoursRecyclerViewAdapter(private val context: Context) :

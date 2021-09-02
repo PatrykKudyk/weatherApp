@@ -1,4 +1,4 @@
-package com.example.weatherapp.models
+package com.example.weatherapp.models.common
 
 data class InformationField(
     val title: String,

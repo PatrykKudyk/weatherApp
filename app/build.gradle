@@ -58,7 +58,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
     //room
-    def room_version = "2.3.0"
+    def room_version = "2.4.0-alpha01"
 
     implementation("androidx.room:room-runtime:$room_version")
     annotationProcessor "androidx.room:room-compiler:$room_version"
