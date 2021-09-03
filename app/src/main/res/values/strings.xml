@@ -27,7 +27,7 @@
     <string name="humidity">Humidity</string>
     <string name="wind_speed">Wind speed</string>
     <string name="wind_dir">Wind direction</string>
-    <string name="feels_like">Feels like</string>
+    <string name="feels_like">Sensed temperature</string>
     <string name="pressure">Pressure</string>
     <string name="moon_phase">Moon phase</string>
     <string name="clouds">Clouds</string>

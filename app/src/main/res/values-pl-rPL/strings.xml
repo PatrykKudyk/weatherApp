@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="navigation_drawer_open">Otwórz nawigację boczną</string>
+    <string name="navigation_drawer_close">Zamknij nawigację boczna</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Nagłówek nawigacji</string>
+    <string name="action_settings">Ustawienia</string>
+
+    <string name="menu_home">Główna</string>
+    <string name="menu_chosen">Wybrane</string>
+
+    <string name="addCity">Dodaj miasto</string>
+    <string name="cityName">Nazwa miasta</string>
+    <string name="noCityGiven">Nie podano miasta</string>
+    <string name="cityDoesNotExist">Podane miasto nie istnieje</string>
+    <string name="toast_city_not_found">Podane miasto nie zostało znalezione. Spróbuj wpisać inne.</string>
+    <string name="toast_something_went_wrong_try_again">Coś poszło nie tak. Spróbuj ponownie.</string>
+    <string name="toast_response_not_known">Nieznana odpowiedź serwera.</string>
+    <string name="toast_request_timeout">Zapytanie trwało za długo. Spróbuj ponownie.</string>
+    <string name="sunrise">Wschód Słońca</string>
+    <string name="sunset">Zachod Słońca</string>
+    <string name="moonrise">Wschód Księżyca</string>
+    <string name="moonset">Zachód Księżyca</string>
+    <string name="chance_of_rain">Szansa na deszcz</string>
+    <string name="chance_of_snow">Szansa na śnieg</string>
+    <string name="humidity">Wilgotność</string>
+    <string name="wind_speed">Prędkość wiatru</string>
+    <string name="wind_dir">Kierunek wiatru</string>
+    <string name="feels_like">Temperatura odczuwalna</string>
+    <string name="pressure">Ciśnienie</string>
+    <string name="moon_phase">Faza Księżyca</string>
+    <string name="clouds">Zachmurzenie</string>
+    <string name="initSettings">Inicjalizacja ustawień</string>
+    <string name="settings">Ustawienia</string>
+
+    <string name="category_general">Główne</string>
+    <string name="category_units">Jednostki</string>
+    <string name="title_degrees_symbol">Typ stopni przy temperaturze</string>
+    <string name="title_chosen_list_order">Wybrany tryb kolejności miast</string>
+    <string name="title_language">Język</string>
+    <string name="title_pressure">Ciśnienie</string>
+    <string name="title_wind">Wiatr</string>
+    <string name="description_symbols">Sprecyzuj który system będzie używany do prezentacji wartości</string>
+    <string name="description_chosen_list_order">Sprecyzuj jaki tryb kolejności miast chcesz używać</string>
+    <string name="description_language">Język aplikacji</string>
+    <string name="dialog_title_degrees_symbol">Wybierz typ jednostki temperatury</string>
+    <string name="dialog_title_chosen_list_order">Wybierz tryb kolejności</string>
+    <string name="dialog_title_language">Język</string>
+    <string name="dialog_title_pressure">Wybierz typ jednostki ciśnienia</string>
+    <string name="dialog_title_wind">Wybierz typ jednostki prędkości wiatru</string>
+
+    <string-array name="entries_degrees_symbol">
+        <item>°C</item>
+        <item>°F</item>
+    </string-array>
+    <string-array name="entries_chosen_list_order">
+        <item>Domyślny</item>
+        <item>Alfabetycznie rosnąco</item>
+        <item>Alfabetycznie malejąco</item>
+        <item>Data dodania rosnąco</item>
+        <item>Data dodania malejąco</item>
+    </string-array>
+    <string-array name="entries_language">
+        <item>English</item>
+        <item>Polski</item>
+        <item>Deutsh</item>
+    </string-array>
+    <string-array name="entries_pressure_symbol">
+        <item>hPa</item>
+        <item>inHg</item>
+    </string-array>
+    <string-array name="entries_wind_symbol">
+        <item>km na godzinę</item>
+        <item>mile na godzinę</item>
+    </string-array>
+
+    <string name="celsius">°C</string>
+    <string name="fahrenheit">°F</string>
+    <string name="mb">hPa</string>
+    <string name="in">inHg</string>
+    <string name="kmph">km/h</string>
+    <string name="mph">mph</string>
+</resources>

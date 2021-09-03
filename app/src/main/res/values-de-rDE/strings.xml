@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="navigation_drawer_open">Seitennavigation öffnen</string>
+    <string name="navigation_drawer_close">Seitennavigation schließen</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation Üerschrift</string>
+    <string name="action_settings">Einstellungen</string>
+
+    <string name="menu_home">Heimat</string>
+    <string name="menu_chosen">Gewählt</string>
+
+    <string name="addCity">Stadt hinzufügen</string>
+    <string name="cityName">Stadt Name</string>
+    <string name="noCityGiven">Kein Stadt angegeben</string>
+    <string name="cityDoesNotExist">Die angegebene Stadt existiert nicht</string>
+    <string name="toast_city_not_found">Die Stadt wurde nicht gefunden. Versuchen Sie es mit einem anderen Namen.</string>
+    <string name="toast_something_went_wrong_try_again">Etwas ist schief gelaufen. Versuchen Sie es nochmal.</string>
+    <string name="toast_response_not_known">Serverantwort ist unbekannt.</string>
+    <string name="toast_request_timeout">Zeitüberschreitung der Anforderung. Versuchen Sie es nochmal.</string>
+    <string name="sunrise">Sonnenaufgang</string>
+    <string name="sunset">Sonnenuntergang</string>
+    <string name="moonrise">Mondaufgang</string>
+    <string name="moonset">Monduntergang</string>
+    <string name="chance_of_rain">Regenwahrscheinlichkeit</string>
+    <string name="chance_of_snow">Schneewahrscheinlichkeit</string>
+    <string name="humidity">Feuchtigkeit</string>
+    <string name="wind_speed">Windgeschwindigkeit</string>
+    <string name="wind_dir">Windrichtung</string>
+    <string name="feels_like">Gemessene Temperatur</string>
+    <string name="pressure">Druck</string>
+    <string name="moon_phase">Mondphase</string>
+    <string name="clouds">Bewölkt</string>
+    <string name="initSettings">Initialisierung der Einstellungen</string>
+    <string name="settings">Einstellungen</string>
+
+    <string name="category_general">Allgemeines</string>
+    <string name="category_units">Einheit</string>
+    <string name="title_degrees_symbol">Gradart bei Temperatur</string>
+    <string name="title_chosen_list_order">Stadtreihenfolgemodus ausgewählt</string>
+    <string name="title_language">Sprache</string>
+    <string name="title_pressure">Druck</string>
+    <string name="title_wind">Wind</string>
+    <string name="description_symbols">Geben Sie an, welches System zur Darstellung der Werte verwendet wird</string>
+    <string name="description_chosen_list_order">Bitte geben Sie an, welchen Städtereihenfolgemodus Sie verwenden möchten</string>
+    <string name="description_language">Anwendungssprache</string>
+    <string name="dialog_title_degrees_symbol">Wählen Sie die Art der Temperatureinheit</string>
+    <string name="dialog_title_chosen_list_order">Wählen Sie den Sequenzmodus</string>
+    <string name="dialog_title_language">Sprache</string>
+    <string name="dialog_title_pressure">Wählen Sie den Typ der Druckeinheit</string>
+    <string name="dialog_title_wind">Wählen Sie den Typ der Windgeschwindigkeitseinheit</string>
+
+    <string-array name="entries_degrees_symbol">
+        <item>°C</item>
+        <item>°F</item>
+    </string-array>
+    <string-array name="entries_chosen_list_order">
+        <item>Ursprünglich</item>
+        <item>Alphabetisch aufsteigend</item>
+        <item>Alphabetisch absteigend</item>
+        <item>Datum hinzugefügt aufsteigend</item>
+        <item>Datum hinzugefügt absteigend</item>
+    </string-array>
+    <string-array name="entries_language">
+        <item>English</item>
+        <item>Polski</item>
+        <item>Deutsh</item>
+    </string-array>
+    <string-array name="entries_pressure_symbol">
+        <item>hPa</item>
+        <item>inHg</item>
+    </string-array>
+    <string-array name="entries_wind_symbol">
+        <item>km pro Stunde</item>
+        <item>miles pro Stunde</item>
+    </string-array>
+
+    <string name="celsius">°C</string>
+    <string name="fahrenheit">°F</string>
+    <string name="mb">hPa</string>
+    <string name="in">inHg</string>
+    <string name="kmph">km/h</string>
+    <string name="mph">mph</string>
+</resources>
