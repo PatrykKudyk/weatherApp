@@ -4,4 +4,5 @@ data class Configuration(
     val language: String
 //    val homeDetailsVisibility: ConfigurationDetailsVisibility,
 
+    
 )

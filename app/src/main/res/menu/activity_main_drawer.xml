@@ -14,4 +14,16 @@
             android:title="@string/menu_chosen" />
 
     </group>
+
+    <group
+        android:checkableBehavior="single"
+        android:menuCategory="secondary">
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/settings"/>
+
+    </group>
+
 </menu>

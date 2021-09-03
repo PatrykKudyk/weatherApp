@@ -12,21 +12,26 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_nav_home_to_add_city"
+            app:destination="@id/add_city"
             app:enterAnim="@anim/enter_from_bottom"
-            app:popExitAnim="@anim/exit_to_bottom"
-            app:destination="@id/add_city" />
+            app:popExitAnim="@anim/exit_to_bottom" />
+        <action
+            android:id="@+id/action_nav_home_to_init_settings"
+            app:destination="@id/init_settings"
+            app:enterAnim="@anim/enter_from_bottom"
+            app:popExitAnim="@anim/exit_to_bottom" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_chosen"
         android:name="com.example.weatherapp.ui.chosen.ChosenFragment"
         android:label="@string/menu_chosen"
-        tools:layout="@layout/fragment_chosen" >
+        tools:layout="@layout/fragment_chosen">
         <action
             android:id="@+id/action_nav_chosen_to_add_city"
+            app:destination="@id/add_city"
             app:enterAnim="@anim/enter_from_bottom"
-            app:popExitAnim="@anim/exit_to_bottom"
-            app:destination="@id/add_city" />
+            app:popExitAnim="@anim/exit_to_bottom" />
     </fragment>
 
     <fragment
@@ -45,4 +50,20 @@
             app:argType="com.example.weatherapp.models.enums.OrderOwnerEnum" />
     </fragment>
 
+    <fragment
+        android:id="@+id/init_settings"
+        android:name="com.example.weatherapp.ui.initSettings.InitSettingsFragment"
+        android:label="@string/initSettings"
+        tools:layout="@layout/fragment_init_settings">
+        <action
+            android:id="@+id/action_init_settings_to_nav_home"
+            app:popUpTo="@id/nav_home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.weatherapp.ui.settings.SettingsFragment"
+        android:label="@string/settings">
+
+    </fragment>
 </navigation>

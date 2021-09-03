@@ -13,6 +13,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentHomeBinding
 import com.example.weatherapp.models.enums.OrderOwnerEnum
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 
 class HomeFragment : Fragment() {
 
@@ -27,12 +30,10 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
 
         viewModel.initTransitionHelper(binding, requireContext())
 
@@ -53,6 +54,7 @@ class HomeFragment : Fragment() {
         Handler().postDelayed({
             makeStartAnimations()
         }, 100)
+//        checkSettingsAsync()
     }
 
     override fun onStop() {
@@ -65,6 +67,17 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         viewModel.primaryCity.removeObservers(requireActivity())
         _binding = null
+    }
+
+    private fun checkSettingsAsync() = runBlocking{
+        async(Dispatchers.Default) {
+            val settings = viewModel.settingsDao.allSettings
+            if (settings.isEmpty()){
+                findNavController().navigate(R.id.action_nav_home_to_init_settings)
+            } else {
+                viewModel.initConfiguration()
+            }
+        }
     }
 
     private fun checkPrimaryCity() {

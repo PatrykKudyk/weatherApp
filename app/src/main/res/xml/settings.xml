@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="@string/category_general"
+        app:iconSpaceReserved="false">
+
+        <ListPreference
+            android:defaultValue="@string/chosen_list_order_default_value"
+            android:dialogTitle="@string/dialog_title_chosen_list_order"
+            android:entries="@array/entries_chosen_list_order"
+            android:entryValues="@array/values_chosen_list_order"
+            android:icon="@drawable/ic_list_order"
+            android:key="@string/key_chosen_list_order"
+            android:summary="@string/description_chosen_list_order"
+            android:title="@string/title_chosen_list_order" />
+
+        <ListPreference
+            android:defaultValue="@string/language_default_value"
+            android:dialogTitle="@string/dialog_title_language"
+            android:entries="@array/entries_language"
+            android:entryValues="@array/values_language"
+            android:icon="@drawable/ic_language"
+            android:key="@string/key_language"
+            android:summary="@string/description_language"
+            android:title="@string/title_language" />
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:summary="@string/description_symbols"
+        android:title="@string/category_units"
+        app:iconSpaceReserved="false">
+
+        <ListPreference
+            android:defaultValue="@string/degrees_default_value"
+            android:dialogTitle="@string/dialog_title_degrees_symbol"
+            android:entries="@array/entries_degrees_symbol"
+            android:entryValues="@array/values_degrees_symbol"
+            android:icon="@drawable/ic_temperature"
+            android:key="@string/key_degrees_symbol"
+            android:title="@string/title_degrees_symbol"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            android:defaultValue="@string/pressure_symbol_default_value"
+            android:dialogTitle="@string/dialog_title_pressure"
+            android:entries="@array/entries_pressure_symbol"
+            android:entryValues="@array/values_pressure_symbol"
+            android:icon="@drawable/ic_pressure"
+            android:key="@string/key_pressure_symbol"
+            android:title="@string/title_pressure"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            android:defaultValue="@string/wind_symbol_default_value"
+            android:dialogTitle="@string/dialog_title_wind"
+            android:entries="@array/entries_wind_symbol"
+            android:entryValues="@array/values_wind_symbol"
+            android:icon="@drawable/ic_wind_speed"
+            android:key="@string/key_wind_symbol"
+            android:title="@string/title_wind"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
+

@@ -7,10 +7,11 @@ import androidx.room.RoomDatabase
 import com.example.weatherapp.db.city.City
 import com.example.weatherapp.db.city.CityDao
 import com.example.weatherapp.db.settings.Setting
+import com.example.weatherapp.db.settings.SettingsDao
 
 @Database(
     entities = [City::class, Setting::class],
-    version = 1,
+    version = 1
 //    autoMigrations = [
 //        AutoMigration (from = 1, to = 2)
 //    ],
@@ -19,6 +20,7 @@ import com.example.weatherapp.db.settings.Setting
 abstract class MyDatabase : RoomDatabase() {
 
     abstract fun cityDao(): CityDao
+    abstract fun settingsDao(): SettingsDao
 
     companion object {
         private var databaseInstance: MyDatabase? = null

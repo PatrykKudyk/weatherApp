@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="key_degrees_symbol">degrees_symbol</string>
+    <string name="key_chosen_list_order">chosen_list_order</string>
+    <string name="key_language">language</string>
+    <string name="key_pressure_symbol">pressure_symbol</string>
+    <string name="key_wind_symbol">wind_symbol</string>
+
+    <string name="degrees_default_value">C</string>
+    <string name="chosen_list_order_default_value">default</string>
+    <string name="language_default_value">eng</string>
+    <string name="pressure_symbol_default_value">mb</string>
+    <string name="wind_symbol_default_value">km</string>
+
+    <string-array name="values_degrees_symbol">
+        <item>C</item>
+        <item>F</item>
+    </string-array>
+    <string-array name="values_chosen_list_order">
+        <item>default</item>
+        <item>alphabetic_asc</item>
+        <item>alphabetic_desc</item>
+        <item>add_date_asc</item>
+        <item>add_date_desc</item>
+    </string-array>
+    <string-array name="values_language">
+        <item>eng</item>
+        <item>pl</item>
+        <item>de</item>
+    </string-array>
+    <string-array name="values_pressure_symbol">
+        <item>mb</item>
+        <item>in</item>
+    </string-array>
+    <string-array name="values_wind_symbol">
+        <item>km</item>
+        <item>miles</item>
+    </string-array>
+</resources>

@@ -22,4 +22,12 @@
     <style name="Theme.WeatherApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.WeatherApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="PreferenceScreen"
+        parent="@style/PreferenceThemeOverlay.v14.Material">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/colorGreyLight</item>
+        <item name="android:iconTint">@color/white</item>
+    </style>
 </resources>

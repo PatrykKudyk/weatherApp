@@ -14,6 +14,7 @@ import com.example.weatherapp.databinding.FragmentHomeBinding
 import com.example.weatherapp.db.MyDatabase
 import com.example.weatherapp.db.city.City
 import com.example.weatherapp.db.city.CityDao
+import com.example.weatherapp.db.settings.SettingsDao
 import com.example.weatherapp.helpers.CalendarHelper
 import com.example.weatherapp.helpers.WeatherDrawablesHelper
 import com.example.weatherapp.models.api.CityForecast
@@ -31,14 +32,16 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private lateinit var hoursRecyclerViewAdapter: HoursRecyclerViewAdapter
     private lateinit var daysRecyclerViewAdapter: DaysRecyclerViewAdapter
 
+    val settingsDao: SettingsDao
     val primaryCity: LiveData<City?>
     var shouldAnimate = true
     var areDetailsVisible = false
     lateinit var transitionHelper: HomeFragmentTransitionHelper
 
     init {
-        val cityDb = MyDatabase.getDatabase(application)
-        cityDao = cityDb!!.cityDao()
+        val db = MyDatabase.getDatabase(application)
+        cityDao = db!!.cityDao()
+        settingsDao = db.settingsDao()
         primaryCity = cityDao.primaryCity
     }
 
@@ -198,6 +201,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             transitionHelper.animateHidingDetails()
         }
         areDetailsVisible = !areDetailsVisible
+    }
+
+    fun initConfiguration() {
+
     }
 
 }
